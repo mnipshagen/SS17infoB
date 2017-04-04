@@ -2,6 +2,8 @@ import java.util.*;
 import java.lang.*;
 
 /**
+ * Authors: mnipshagen, toludwig
+ *
  * Takes an max input from user and prints out the Fibonacci sequence up
  * that maximum using the Fibonacci.java
  * Created by Mo on 04.04.2017.
@@ -15,11 +17,11 @@ public class FibonacciPrint {
     	print(max);
     }
 
-    private void print (int max) {
+    private static void print (int max) {
     	Fibonacci f = new Fibonacci();
     	for (int i = 0; i <= max; i++) {
-	    	System.out.print("Iteration " + i +": " + f.getFibonacci());
-	    	f.next();
-	    }
+	    System.out.print("Iteration " + i +": " + f.getFibonacci());
+	    f.next();
+	}
     }
 }

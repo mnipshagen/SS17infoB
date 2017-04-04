@@ -1,6 +1,6 @@
-package Fraction;
-
 /**
+ * Authors: mnipshagen, toludwig
+ *
  * Eine Testklasse, die alle Funktionen von <code>Fraction</code> testet
  */
 public class FractionTest {
@@ -32,7 +32,7 @@ public class FractionTest {
             }
 
             if (f3.getNumerator() == 1
-                    && f3.getDenominator() == 10)
+                    && f3.getDenominator() == 10) {
                 System.out.println("f3 korrekt.");
             }
             else {

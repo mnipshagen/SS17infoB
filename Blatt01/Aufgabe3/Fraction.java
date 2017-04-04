@@ -1,6 +1,5 @@
-package Fraction;
-
 /**
+ * Authors: mnipshagen, toludwig
  * Speichert einen Bruch als 2 einzelne Zahlen <code>numerator</code>
  * und <code>denominator</code>. Es werden einzelne Rechenoperationen
  * unterstuetzt.
