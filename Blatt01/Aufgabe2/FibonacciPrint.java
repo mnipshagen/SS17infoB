@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.*;
 
 /**
  * Takes an max input from user and prints out the Fibonacci sequence up
