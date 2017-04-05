@@ -11,7 +11,7 @@ import java.lang.*;
 public class FibonacciPrint {
 
     public static void main(String[] args){
-    	System.out.print("Bis wohin soll Fibonacci'd werden?");
+    	System.out.println("Bis wohin soll Fibonacci'd werden?");
     	Scanner sc = new Scanner(System.in);
     	int max = sc.nextInt();
     	print(max);
@@ -19,9 +19,14 @@ public class FibonacciPrint {
 
     private static void print (int max) {
     	Fibonacci f = new Fibonacci();
+    	System.out.println("| n |  f(n)  |");
+    	System.out.println("+---+--------+");
     	for (int i = 0; i <= max; i++) {
-	    System.out.print("Iteration " + i +": " + f.getFibonacci());
-	    f.next();
-	}
+    		String n = String.format("%1$3s",String.valueOf(i));
+    		String fn =
+    			String.format("%1$8s",String.valueOf(f.getFibonacci()));
+	    	System.out.println("|" + n + "|" + fn + "|");
+	    	f.next();
+		}
     }
 }
