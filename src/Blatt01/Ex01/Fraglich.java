@@ -1,3 +1,5 @@
+package Blatt01.Ex01;
+
 public class Fraglich {
 
    static int a;

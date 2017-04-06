@@ -1,6 +1,7 @@
-package Aufgabe2;
+package Blatt01.Ex03;
 
 /**
+ * Authors: mnipshagen, toludwig
  * Speichert einen Bruch als 2 einzelne Zahlen <code>numerator</code>
  * und <code>denominator</code>. Es werden einzelne Rechenoperationen
  * unterstuetzt.
@@ -118,21 +119,6 @@ public class Fraction {
             }
         }
         return x;
-    }
-
-    public Fraction add(Fraction addend){
-
-        int newnumerator = this.numerator + addend.numerator;
-        int newdenominator = this.denominator + addend.denominator;
-        Fraction neu = new Fraction (newnumerator, newdenominator);
-        return neu;
-    }
-
-    public Fraction subtract(Fraction subtrahend){
-        int newnumerator = this.numerator - subtrahend.numerator;
-        int newdenominator = this.denominator - subtrahend.denominator;
-        Fraction neu = new Fraction (newnumerator, newdenominator);
-        return neu;
     }
 
     /**

@@ -1,4 +1,4 @@
-package Aufgabe1;
+package Blatt02.Ex01;
 
 /**
  * Created by Jannik on 16.04.2016.

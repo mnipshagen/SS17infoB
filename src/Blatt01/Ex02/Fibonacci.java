@@ -1,3 +1,5 @@
+package Blatt01.Ex02;
+
 /**
  * Authors: mnipshagen, toludwig
  *
