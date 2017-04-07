@@ -16,13 +16,15 @@ public class Fibonacci {
         this.current = 1;
     }
 
-    public void next(){
+    public int next(){
         int tmp = this.previous + this.current;
         this.previous = this.current;
         this.current  = tmp;
+
+        return this.current;
     }
 
-    public int getFibonacci(){
+    public int getCurrent(){
     	return current;
     }
 }
