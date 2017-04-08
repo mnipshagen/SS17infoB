@@ -31,10 +31,17 @@ public class FibonacciPrint {
     }
 
     private static void print (Fibonacci f, int max) {
+        max -= 2;
+
     	System.out.println("| n |  f(n)  |");
     	System.out.println("+---+--------+");
+        System.out.println("|  0|       0|");
+        if (max > 0) {
+            System.out.println("|  1|       1|");
+        }
+
     	for (int i = 0; i <= max; i++) {
-    		String n = String.format("%1$3s",String.valueOf(i));
+    		String n = String.format("%1$3s",String.valueOf(i+2));
     		String fn =
     			String.format("%1$8s",String.valueOf(f.next()));
 	    	System.out.println("|" + n + "|" + fn + "|");
