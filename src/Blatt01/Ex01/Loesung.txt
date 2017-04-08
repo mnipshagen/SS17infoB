@@ -32,7 +32,7 @@ Datentypen intuitiv. Jedoch ist Vorsicht geboten bei allen
 nicht-primitiven Datentypen wie Arrays, Objekten und sogar
 Strings (intern char-Arrays). Diese werden nämlich nicht etwa
 shallow (gescheige denn deep) kopiert.
-Sondern der Value dieser Datentypene IST ihre "Referenz", ihr
+Sondern der Value dieser Datentypene IST ihre "Referenz", ihre
 Adresse im Speicher, von wo aus auf die einzelnen Inhalte
 verwiesen wird. Das erklärt, warum ein Objekt/Array, das an eine
-Methode übergeben wurde mit nachher u.U. verändert ist.
+Methode übergeben wurde, nachher u.U. verändert ist.
