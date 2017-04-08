@@ -26,10 +26,19 @@ public class FibonacciPrint {
             Scanner sc = new Scanner(System.in);
             max = sc.nextInt();
         }
+        if (max < 0) {
+            throw new IllegalArgumentException("Negative Iterationen sind eher schwierig tbh.");
+        }
 		Fibonacci f = new Fibonacci();
 		print(f, max);
     }
 
+    /**
+     * dedizierte print methode um die main methode übersichtlich zu halten
+     * gibt die nächsten {@code max} Werte der Fibonacci Sequenz von {@code f}
+     * @param f Die Fibonacci klasse über die iteriert wird
+     * @param max wie viele iterationen durchgeführt werden sollen
+     */
     private static void print (Fibonacci f, int max) {
         max -= 2;
 
