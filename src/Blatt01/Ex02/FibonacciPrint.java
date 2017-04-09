@@ -1,5 +1,4 @@
 package Blatt01.Ex02;
-
 import java.util.*;
 import java.lang.*;
 

@@ -9,11 +9,11 @@ Stelle  7:  3       -       {16, 0, 0, 9}
 Stelle  8:  23      19      -
 Stelle  9:  3       23      {16, 0, 0, 9}
 Stelle 10:  5       -       { 0, 0, 0, 0}
-Stelle 11:  4       12      { 0, 0, 0, 0}
+Stelle 11:  4       12      { 8, 0, 0, 0}
 Stelle 12:  23      4       -
 Stelle 13:  23      -       { 0, 0, 0, 0}
 Stelle 14:  23      23      -
-Stelle 15:  23      12      { 0, 0, 0, 0}
+Stelle 15:  23      12      { 4, 0, 0, 0}
 
 
 Call-by-Value (CbV) vs. Call-by-Reference (CbR)
