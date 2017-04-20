@@ -1,11 +1,11 @@
 package Blatt02.Ex01;
 
 /**
- * Created by Jannik on 16.04.2016.
+ * Authors: mnipshagen, toludwig
  */
 public class Ticker {
     private static Ticker ticker;
-    private Ticker (){};
+    private Ticker(){};
 
     public static Ticker getInstance(){
         if (ticker == null){
@@ -14,6 +14,7 @@ public class Ticker {
         return ticker;
     }
     public void print(String text){
+        text = text.replace("\n", "");
         System.out.print("+++" + text);
     }
 }

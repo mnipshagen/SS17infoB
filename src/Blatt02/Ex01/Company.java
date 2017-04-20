@@ -1,7 +1,7 @@
 package Blatt02.Ex01;
 
 /**
- * Created by Jannik on 16.04.2016.
+ * Authors: mnipshagen, toludwig
  */
 public class Company {
     private String name;
@@ -10,6 +10,7 @@ public class Company {
     public Company(String name){
         this.name = name;
     }
+
     public void changeStockPrice(double d){
         ticker.print(this.name + " " +d);
     }
