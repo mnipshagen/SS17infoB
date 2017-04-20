@@ -45,7 +45,7 @@ public class Fraction extends Blatt01.Ex03.Fraction {
      * @param subtrahend the fraction to subtract
      * @return the difference
      */
-    public Fraction substract (Fraction subtrahend) {
+    public Fraction subtract(Fraction subtrahend) {
         if (this.getDenominator() == subtrahend.getDenominator()) {
             int new_n = this.getNumerator() - subtrahend.getNumerator();
             return new Fraction(new_n, this.getDenominator());
@@ -57,7 +57,14 @@ public class Fraction extends Blatt01.Ex03.Fraction {
     }
 
     public static Fraction parseFraction (String frac) {
-        return null;
+        if (!frac.matches("\\(?\\s?\\d+\\s?/\\s?\\d+\\s?\\)?")) {
+            throw new IllegalArgumentException("The string entered was not a recognised fraction.");
+        }
+        String[] nums = frac.replace("[(,), ]","").split("/");
+        int numerator = Integer.parseInt(nums[0]);
+        int denominator = Integer.parseInt(nums[1]);
+
+        return new Fraction(numerator, denominator);
     }
 
     protected int kgv(int n, int m) {
