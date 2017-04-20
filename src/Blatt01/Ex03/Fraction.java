@@ -2,6 +2,7 @@ package Blatt01.Ex03;
 
 /**
  * Authors: mnipshagen, toludwig
+ *
  * Speichert einen Bruch als 2 einzelne Zahlen <code>numerator</code>
  * und <code>denominator</code>. Es werden einzelne Rechenoperationen
  * unterstuetzt.
@@ -14,6 +15,14 @@ public class Fraction {
     private int denominator;
 
     /**
+     * Konstruktor fuer ganze zahlen, weil Integer nicht ins Schema passt
+     * @param n Der Zaehler, der Nenner ist bei Ganzzahlen 1
+     */
+    public Fraction(int n){
+        this(n, 1);
+    }
+
+    /**
      * Konstruktor der den Bruch aus 2 uebergebenen Integers kreirt
      * @param n Zaehler
      * @param d Nenner
@@ -22,14 +31,6 @@ public class Fraction {
         int ggt = ggt(n, d);
         this.numerator = n/ggt;
         this.denominator = d/ggt;
-    }
-
-    /**
-     * Konstruktor fuer ganze zahlen, weil Integer nicht ins Schema passt
-     * @param n Der Zaehler, der Nenner ist bei Ganzzahlen 1
-     */
-    public Fraction(int n){
-        this(n, 1);
     }
 
     /**
@@ -56,9 +57,7 @@ public class Fraction {
     public Fraction multiply(int factor){
         int newnum = this.numerator * factor;
 
-        Fraction f = new Fraction(newnum, this.getDenominator());
-
-        return f;
+        return new Fraction(newnum, this.getDenominator());
     }
 
     /**
@@ -70,9 +69,7 @@ public class Fraction {
         int newnum = this.numerator * factor.getNumerator();
         int newdenom = this.denominator * factor.getDenominator();
 
-        Fraction f = new Fraction(newnum, newdenom);
-
-        return f;
+        return new Fraction(newnum, newdenom);
     }
 
     /**
@@ -126,6 +123,6 @@ public class Fraction {
      * @return Bruch in Schriftform
      */
     public String toString() {
-        return numerator + "/" + denominator;
+        return "( " + numerator + " / " + denominator + " )";
     }
 }
