@@ -57,7 +57,7 @@ public class Fraction extends Blatt01.Ex03.Fraction {
     }
 
     public static Fraction parseFraction (String frac) {
-        if (!frac.matches("\\(?\\s?\\d+\\s?/\\s?\\d+\\s?\\)?")) {
+        if (!frac.matches("\\(?\\s?-?\\s?\\d+\\s?/\\s?\\d+\\s?\\)?")) {
             throw new IllegalArgumentException("The string entered was not a recognised fraction.");
         }
         String[] nums = frac.replaceAll("[()\\s]","").split("/");
