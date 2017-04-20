@@ -1,7 +1,8 @@
 package Blatt02.Ex01;
 
 /**
- * Created by Jannik on 16.04.2016.
+ * @author Moritz Nipshagen
+ * @author Tobias Ludwig
  */
 public class Company {
     private String name;
