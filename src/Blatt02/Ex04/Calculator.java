@@ -52,7 +52,7 @@ public class Calculator {
                 + "\n\nWith the following Stacktrace:");
         e.printStackTrace();
         System.out.print(
-                "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
+                "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
         +       "~~~~~~~~~~~~~~~~~  Instructions  ~~~~~~~~~~~~~~~~~\n"
         +       "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n"
         +       "~ This calculator supports only fractions and\n"
