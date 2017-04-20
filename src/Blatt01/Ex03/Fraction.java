@@ -31,9 +31,9 @@ public class Fraction {
         if (d == 0) {
             throw new IllegalArgumentException("Dividing by 0. Really?");
         }
-        if (n < 0 && d < 0) {
-            n *= -1;
+        if (d < 0) {
             d *= -1;
+            n *= -1;
         }
         int ggt = ggt(n, d);
         this.numerator = n/ggt;
@@ -115,6 +115,8 @@ public class Fraction {
      * @return ggt
      */
     protected int ggt(int x, int y) {
+        x = Math.abs(x);
+        y = Math.abs(y);
         while (y != 0) {
             if (x > y) {
                 x = x - y;
