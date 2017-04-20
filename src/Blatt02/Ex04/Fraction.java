@@ -60,7 +60,7 @@ public class Fraction extends Blatt01.Ex03.Fraction {
         if (!frac.matches("\\(?\\s?\\d+\\s?/\\s?\\d+\\s?\\)?")) {
             throw new IllegalArgumentException("The string entered was not a recognised fraction.");
         }
-        String[] nums = frac.replace("[(,), ]","").split("/");
+        String[] nums = frac.replaceAll("[()\\s]","").split("/");
         int numerator = Integer.parseInt(nums[0]);
         int denominator = Integer.parseInt(nums[1]);
 
