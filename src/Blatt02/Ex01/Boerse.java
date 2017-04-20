@@ -14,8 +14,8 @@ public class Boerse {
         oc.changeStockPrice(243.5);
         bl.changeStockPrice(142.3);
         mc.changeStockPrice(123123.0);
-        sc.changeStockPrice(5643.7);
-        mc.changeStockPrice(50.3);
+        sc.changeStockPrice(5643);
+        mc.changeStockPrice(-50.3);
 
         bl = null;
         mc = null;

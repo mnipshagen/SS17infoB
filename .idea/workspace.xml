@@ -5,7 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SS17_Binf/Blatt01/Ex03/Fraction.class" afterPath="$PROJECT_DIR$/out/production/SS17_Binf/Blatt01/Ex03/Fraction.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blatt02/Ex01/Boerse.java" afterPath="$PROJECT_DIR$/src/Blatt02/Ex01/Boerse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blatt02/Ex04/Calculator.java" afterPath="$PROJECT_DIR$/src/Blatt02/Ex04/Calculator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -849,7 +848,7 @@
       <workItem from="1491655367167" duration="1671000" />
       <workItem from="1491901046473" duration="926000" />
       <workItem from="1492677594518" duration="31000" />
-      <workItem from="1492677823304" duration="10622000" />
+      <workItem from="1492677823304" duration="10678000" />
     </task>
     <task id="LOCAL-00001" summary="Adjusted Ex01.02 to fit task description and practical part examples">
       <created>1491565902455</created>
@@ -921,11 +920,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492702718264</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added an extra line">
+      <created>1492703235708</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1492703235708</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16270000" />
+    <option name="totallyTimeSpent" value="16326000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
@@ -1012,7 +1018,8 @@
     <MESSAGE value="Added calculator and some javadoc" />
     <MESSAGE value="Fixed Regex" />
     <MESSAGE value="Fixed stackoverflow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed stackoverflow" />
+    <MESSAGE value="added an extra line" />
+    <option name="LAST_COMMIT_MESSAGE" value="added an extra line" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
