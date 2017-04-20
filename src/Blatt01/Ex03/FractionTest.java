@@ -15,11 +15,11 @@ public class FractionTest {
         Fraction g = new Fraction(5);
 
         // Alle Brueche werden auf korrektes kuerzen ueberprueft.
-        System.out.println("Überprüfe korrekte Instanziierung:");
+//        System.out.println("Überprüfe korrekte Instanziierung:");
 
             if (f1.getNumerator() == 2
                     && f1.getDenominator() == 3) {
-                System.out.println("f1 korrekt.");
+//                System.out.println("f1 korrekt.");
             }
             else {
                 System.out.print("f1 Fehler! f1 = " + f1.toString());
@@ -27,7 +27,7 @@ public class FractionTest {
 
             if (f2.getNumerator() == 2
                     && f2.getDenominator() == 5) {
-                System.out.println("f2 korrekt.");
+//                System.out.println("f2 korrekt.");
             }
             else {
                 System.out.print("f2 Fehler! f2 = " + f2.toString());
@@ -35,7 +35,7 @@ public class FractionTest {
 
             if (f3.getNumerator() == 1
                     && f3.getDenominator() == 10) {
-                System.out.println("f3 korrekt.");
+//                System.out.println("f3 korrekt.");
             }
             else {
                 System.out.print("f3 Fehler! f3 = " + f3.toString());
@@ -43,7 +43,7 @@ public class FractionTest {
 
             if (g.getNumerator() == 5
                     && g.getDenominator() == 1) {
-                System.out.println("g korrekt.");
+//                System.out.println("g korrekt.");
             }
             else {
                 System.out.print("g Fehler! g = " + g.toString());
@@ -53,18 +53,18 @@ public class FractionTest {
         // wird verglichen ob alle Ergebnisse korrekt sind. Falls nicht,
         // werden "ist" und "sollte" Ergebnis angezeigt um Fehler zu finden.
         System.out.println();
-        System.out.println("Teste Rechenaufgaben:");
+//        System.out.println("Teste Rechenaufgaben:");
 
             Fraction p1 = f1.multiply(4);
             if(p1.getNumerator() == 8) {
-                System.out.println("Ganzzahlige Multiplikation: Check!");
+//                System.out.println("Ganzzahlige Multiplikation: Check!");
             }
             else
               System.out.println("Ganzzahlige Multiplikation fehlgeschlagen");
 
             Fraction p2 = f2.multiply(f3);
             if(p2.getNumerator() == 1 && p2.getDenominator() == 25) {
-                System.out.println("Faktorielle Multiplikation: Check");
+//                System.out.println("Faktorielle Multiplikation: Check");
             }
             else
                 System.out.println("Faktorielle Multiplikation: Nope. "
@@ -72,7 +72,7 @@ public class FractionTest {
 
             Fraction p3 = f1.divide(f2);
             if(p3.getNumerator() == 5 && p3.getDenominator() == 3) {
-                System.out.println("Division: Oh Yeah!");
+//                System.out.println("Division: Oh Yeah!");
             }
             else
                 System.out.println("Division: Och neee. Sollte sein:"
@@ -80,8 +80,8 @@ public class FractionTest {
 
             Fraction p4 = f1.multiply(f2, f3, g);
             if(p4.getNumerator() == 2 && p4.getDenominator() == 15) {
-                System.out.println("Multiple Orgasmen, eeehhm, "
-                            + "Multiplikation: Ohhhh jaaaa!");
+//                System.out.println("Multiple Orgasmen, eeehhm, "
+//                            + "Multiplikation: Ohhhh jaaaa!");
             }
             else
                 System.out.println("Multiple Multiplikation "

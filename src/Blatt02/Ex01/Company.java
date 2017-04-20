@@ -1,7 +1,8 @@
 package Blatt02.Ex01;
 
 /**
- * Authors: mnipshagen, toludwig
+ * @author Moritz Nipshagen
+ * @author Tobias Ludwig
  */
 public class Company {
     private String name;
@@ -10,7 +11,6 @@ public class Company {
     public Company(String name){
         this.name = name;
     }
-
     public void changeStockPrice(double d){
         ticker.print(this.name + " " +d);
     }
