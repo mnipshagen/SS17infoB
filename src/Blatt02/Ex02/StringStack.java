@@ -1,3 +1,5 @@
+package Blatt02.Ex02;
+
 /**
  * A Stack that holds Strings. Works after the LIFO (Last in first out)
  * principle.
@@ -9,6 +11,23 @@ public class StringStack {
 
    public StringStack() {
       this.first = null;
+   }
+
+    /**
+     * Deep copy constructor
+     * @param s the string stack to copy
+     */
+   public StringStack(StringStack s) {
+       this();
+
+       StringStack tmp = new StringStack();
+       while(!s.empty()) {
+           tmp.push(s.pop());
+       }
+       while(!tmp.empty()) {
+            this.push(tmp.peek());
+            s.push(tmp.pop());
+       }
    }
    
    private StringStackEntry first;
