@@ -28,6 +28,13 @@ public class Fraction {
      * @param d Nenner
      */
     public Fraction(int n, int d){
+        if (d == 0) {
+            throw new IllegalArgumentException("Dividing by 0. Really?");
+        }
+        if (n < 0 && d < 0) {
+            n *= -1;
+            d *= -1;
+        }
         int ggt = ggt(n, d);
         this.numerator = n/ggt;
         this.denominator = d/ggt;
@@ -107,7 +114,7 @@ public class Fraction {
      * @param y die zweite Zahl
      * @return ggt
      */
-    private int ggt(int x, int y) {
+    protected int ggt(int x, int y) {
         while (y != 0) {
             if (x > y) {
                 x = x - y;
