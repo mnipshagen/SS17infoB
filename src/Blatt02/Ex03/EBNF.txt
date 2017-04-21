@@ -19,7 +19,7 @@ Klammerausdruck Operator Bruch
 Ausdruck
 
 Bruch 			= Zaehler, "/", Nenner;
-Zaehler			= ["-"], Ziffer, {Ziffer};
+Zaehler			= ["-"], ZifferNichtNull, {Ziffer};
 Nenner 			= ZifferNichtNull, {Ziffer};
 ZifferNichtNull	= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 Ziffer 			= "0" | ZifferNichtNull;
