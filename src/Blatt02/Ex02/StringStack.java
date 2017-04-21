@@ -28,7 +28,7 @@ public class StringStack {
        }
        while(!tmp.empty()) {
             this.push(tmp.peek());
-            s.push(tmp.pop());
+            s.push(new String(tmp.pop())); // actual string copy with new String()!
        }
    }
    

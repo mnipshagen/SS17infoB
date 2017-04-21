@@ -8,7 +8,7 @@ package Blatt02.Ex02;
  * 
  */
 class StringStackEntry {
-   
+
    /**
     * The next StringStackEntry
     */
@@ -38,6 +38,7 @@ class StringStackEntry {
       this.s = s;
       this.next = next;
    }
+
 
    StringStackEntry getNext() {
       return this.next;
