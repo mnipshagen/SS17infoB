@@ -26,5 +26,6 @@ Ziffer 			= "0" | ZifferNichtNull;
 
 Space 			= " ";
 Term 			= Klammerausdruck | Ausdruck | Bruch;
-Ausdruck		= Term, Space, Operator, Space, Term;
+Ausdruck		= Term, {Space, Operator, Space, Term};
 Klammerausdruck = "(", Space, Ausdruck, Space, ")";
+Operator 		= "*", "/", "+", "-";
