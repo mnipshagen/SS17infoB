@@ -14,7 +14,9 @@ public class StringStack {
    }
 
     /**
-     * Deep copy constructor
+     * creates a deep copy of the given StringStack
+     * It iterates through all objects inside the StringStack {@param s}
+     * and creates copies of it to have independent instances
      * @param s the string stack to copy
      */
    public StringStack(StringStack s) {
