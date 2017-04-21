@@ -1,6 +1,10 @@
 package Blatt02.Ex04;
 
 /**
+ * An extension of the earlier programmed Fraction class
+ * This adds the possibility to add or subtract fractions
+ * and also to parse a fraction from a string representation
+ * to an actual fraction instance
  * @author Moritz Nipshagen
  * @author Tobias Ludwig
  */
@@ -56,6 +60,13 @@ public class Fraction extends Blatt01.Ex03.Fraction {
         return new Fraction(new_n,  kgv);
     }
 
+    /**
+     * Tries to create a Fraction from a given string representation
+     * It checks whether the fraction matches a given regular expression
+     * to allow for some variability in the input
+     * @param frac string representation of the fraction
+     * @return the fraction created from {@param frac}
+     */
     public static Fraction parseFraction (String frac) {
         if (!frac.matches("\\(?\\s?-?\\s?\\d+\\s?/\\s?\\d+\\s?\\)?")) {
             throw new IllegalArgumentException("The string entered was not a recognised fraction.");
@@ -67,6 +78,13 @@ public class Fraction extends Blatt01.Ex03.Fraction {
         return new Fraction(numerator, denominator);
     }
 
+    /**
+     * since we need to equalise the denominators of the fractions to
+     * subtract or add them we need to find the least common multiplicative
+     * @param n first number
+     * @param m second number
+     * @return the lcm of the two given numbers
+     */
     protected int kgv(int n, int m) {
         return n * m / ggt(n,m);
     }

@@ -1,6 +1,8 @@
 package Blatt02.Ex04;
 
 /**
+ * A class to make use of the Fraction class.
+ * It takes in arguments when started to calculate with two fractions.
  * @author Moritz Nipshagen
  * @author Tobias Ludwig
  */
@@ -47,6 +49,11 @@ public class Calculator {
         }
     }
 
+    /**
+     * Whenever the program runs into an error, this method will be called
+     * It prints out a formatted instruction text on how to use this program
+     * @param e the exception the program ran into.
+     */
     private static void printInstruction(Exception e) {
         System.err.println("Oh no! An exception occurred:\n" + e.getMessage()
                 + "\n\nWith the following Stacktrace:");
