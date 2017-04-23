@@ -7,19 +7,20 @@ package Blatt02.Ex02;
  */
 public class StringStackTest{
     public static void main(String[] args) {
-        StringStack s1 = new StringStack();
-        s1.push("first");
-        s1.push("second");
-        s1.push("third");
-        s1.push("fourth");
+        final StringStack original = new StringStack();
+        original.push("first");
+        original.push("second");
+        original.push("third");
+        original.push("fourth");
 
-        StringStack s2 = new StringStack(s1);
-        while(!s1.empty()){
-            System.out.println("S1: " + s1.peek() + "\t S2:" + s2.peek());
-            if(s1.peek() == s2.peek()) {
+        StringStack copy = new StringStack(original);
+        while(!original.empty()){
+            System.out.println(String.format("%-20s","Original: " + original.peek()) +
+                    String.format("%-15s","Copy:" + copy.peek()));
+            if(original.peek() == copy.peek()) {
                 System.out.println("If you see this, copy was shallow...");
             }
-            if(!s1.pop().equals(s2.pop())) {
+            if(!original.pop().equals(copy.pop())) {
                 System.out.println("Not equal, bad copy!");
                 break;
             }
