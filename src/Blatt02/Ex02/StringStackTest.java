@@ -25,6 +25,9 @@ public class StringStackTest{
                 break;
             }
         }
+        if(!copy.empty()) {
+            System.out.println("Copy is not empty, bad copy!");
+        }
 
         System.out.println("Done.");
     }

@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36b927d3-f600-4e45-bbfc-eb573ffa314d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SS17_Binf/Blatt02/Ex02/StringStackEntry.class" afterPath="$PROJECT_DIR$/out/production/SS17_Binf/Blatt02/Ex02/StringStackEntry.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SS17_Binf/Blatt02/Ex02/StringStackTest.class" afterPath="$PROJECT_DIR$/out/production/SS17_Binf/Blatt02/Ex02/StringStackTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SS17_Binf/Blatt02/Ex03/EBNF.txt" afterPath="$PROJECT_DIR$/out/production/SS17_Binf/Blatt02/Ex03/EBNF.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blatt02/Ex02/StringStackTest.java" afterPath="$PROJECT_DIR$/src/Blatt02/Ex02/StringStackTest.java" />
@@ -29,8 +31,8 @@
       <file leaf-file-name="StringStack.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Blatt02/Ex02/StringStack.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1037">
-              <caret line="65" column="31" lean-forward="false" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
+            <state relative-caret-position="392">
+              <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -49,8 +51,8 @@
       <file leaf-file-name="StringStackTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Blatt02/Ex02/StringStackTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+            <state relative-caret-position="442">
+              <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -92,12 +94,12 @@
         <option value="$PROJECT_DIR$/src/Blatt01/Ex03/Fraction.java" />
         <option value="$PROJECT_DIR$/src/Blatt02/Ex04/Calculator.java" />
         <option value="$PROJECT_DIR$/src/Blatt02/Ex04/Fraction.java" />
-        <option value="$PROJECT_DIR$/src/Blatt02/Ex02/StringStack.java" />
         <option value="$PROJECT_DIR$/src/Blatt02/Ex01/Ticker.java" />
         <option value="$PROJECT_DIR$/src/Blatt02/Ex01/Company.java" />
         <option value="$PROJECT_DIR$/src/Blatt02/Ex01/Boerse.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Blatt02/Ex02/StringStackEntry.java" />
+        <option value="$PROJECT_DIR$/src/Blatt02/Ex02/StringStack.java" />
         <option value="$PROJECT_DIR$/src/Blatt02/Ex02/StringStackTest.java" />
       </list>
     </option>
@@ -813,7 +815,7 @@
       <workItem from="1492773122071" duration="1155000" />
       <workItem from="1492775718778" duration="475000" />
       <workItem from="1492944955645" duration="804000" />
-      <workItem from="1492951205868" duration="810000" />
+      <workItem from="1492951205868" duration="1967000" />
     </task>
     <task id="LOCAL-00001" summary="Adjusted Ex01.02 to fit task description and practical part examples">
       <created>1491565902455</created>
@@ -906,11 +908,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492774234413</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="changed formatting">
+      <created>1492952138183</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1492952138183</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19598000" />
+    <option name="totallyTimeSpent" value="20755000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2514" height="1096" extended-state="0" />
@@ -926,7 +935,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32905984" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3297414" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.326572" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.326572" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42064372" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1000,7 +1009,9 @@
     <MESSAGE value="added an extra line" />
     <MESSAGE value="Added some divergence" />
     <MESSAGE value="JavaDoc and comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="JavaDoc and comments" />
+    <MESSAGE value="changed formatting" />
+    <MESSAGE value="added stack depth comparison" />
+    <option name="LAST_COMMIT_MESSAGE" value="added stack depth comparison" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1245,14 +1256,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Blatt02/Ex02/StringStack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="65" column="31" lean-forward="false" selection-start-line="65" selection-start-column="31" selection-end-line="65" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Blatt02/Ex02/StringStackEntry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1261,10 +1264,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Blatt02/Ex02/StringStack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="31" column="8" lean-forward="true" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Blatt02/Ex02/StringStackTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+        <state relative-caret-position="442">
+          <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
           <folding />
         </state>
       </provider>
