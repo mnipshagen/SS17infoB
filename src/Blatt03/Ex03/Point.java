@@ -1,22 +1,45 @@
 package Blatt03.Ex03;
 
 /**
- * Created by Mo on 03/05/2017.
+ * A class that describes a real n-dimensional point
+ * @author Moritz Nipshagen
+ * @author Tobias Ludwig
+ * @version probably final
  */
 public class Point extends Geometry implements Comparable {
 
+    /**
+     * stores the n coordinates of the point
+     */
     private double[] coordinates;
 
+    /**
+     * creates a point from a given array/list/variable amount of doubles
+     * dimension is implicitly modelled by the length of the given array
+     * @param coords holds all the doubles
+     */
     public Point(double... coords) {
         super(coords.length);
         this.coordinates = coords;
     }
 
+    /**
+     * A point has a volume of 0
+     * @return the volume of the point
+     */
     @Override
     public double volume() {
         return 0;
     }
 
+    /**
+     * provides a new geometry which completely encapsulates this and the
+     * given var1 Geometry in a minimal way.
+     * Realised by taking the min & max of
+     * each single coordinate of all available points
+     * @param var1 the other geometry to encapsulate
+     * @return a new volume which encapsulates this and var1
+     */
     @Override
     public Geometry encapsulate(Geometry var1) {
         if (this.dimensions() != var1.dimensions()) {
@@ -46,6 +69,11 @@ public class Point extends Geometry implements Comparable {
         return null;
     }
 
+    /**
+     * returns a copy of the coordinates of the point
+     * only a copy to not have an implicit way of changing the data
+     * @return the coordinate array of the point
+     */
     public double[] getCoordinates() {
         double[] copy = new double[coordinates.length];
         System.arraycopy(coordinates,0, copy, 0, copy.length);

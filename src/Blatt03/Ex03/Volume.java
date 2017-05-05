@@ -1,12 +1,28 @@
 package Blatt03.Ex03;
 
 /**
- * Created by Mo on 03/05/2017.
+ * A class to describe a hyperrectangle with n >= 2 dimensions.
+ * Hyperrectangle is defined by n sides that are all orthogonal to each other
+ * or: the cartesian product of n real intervals, where each interval is the
+ * distance between of one dimension of the diagonally opposite points spanning
+ * the hyperrectangle
+ * @author Moritz Nipshagen
+ * @author Tobias Ludwig
+ * @version probably final
  */
 public class Volume extends Geometry implements Comparable {
 
+    /**
+     * the two diagonally opposite points spanning the hyperrectangle
+     */
     private Point p1,p2;
 
+    /**
+     * given two points of the same dimension, constructs a hyperrectangle between them
+     * @param p1 one corner point
+     * @param p2 the diagonally opposite point of p1 of the hyperrectangle
+     * @throws RuntimeException if the dimensions of the points are not the same
+     */
     public Volume(Point p1, Point p2) {
         super(p1.dimensions());
         if (p1.dimensions() != p2.dimensions()) {
@@ -16,6 +32,12 @@ public class Volume extends Geometry implements Comparable {
         this.p2 = p2;
     }
 
+    /**
+     * calculates the volume of the Hyperrectangle.
+     * Done by building the product over the absolute distance between each
+     * dimension of the rectangle
+     * @return the volume of the Hyperrectangle
+     */
     @Override
     public double volume() {
         double v = 1.;
@@ -25,11 +47,20 @@ public class Volume extends Geometry implements Comparable {
         return v;
     }
 
+    /**
+     * provides a new geometry which completely encapsulates this and the
+     * given var1 Geometry in a minimal way.
+     * Realised by taking the min & max of
+     * each single coordinate of all available points
+     * @param var1 the other geometry to encapsulate
+     * @return a new volume which encapsulates this and var1
+     */
     @Override
     public Geometry encapsulate(Geometry var1) {
         if (this.dimensions() != var1.dimensions()) {
             return null;
         }
+        // initialise x3 = null, because var1 is a point, we won't need it
         double[] x,x1,x2,x3 = null;
         x = p1.getCoordinates();
         x1 = p2.getCoordinates();
@@ -54,10 +85,22 @@ public class Volume extends Geometry implements Comparable {
         return new Volume(new Point(max), new Point(min));
     }
 
+    /**
+     * A way to read point1
+     * Data secure, because I control the class Point, and know that
+     * there is no way to modify the data when reading the reference.
+     * @return point1 of the volume
+     */
     public Point getP1() {
         return p1;
     }
 
+    /**
+     * A way to read point2
+     * Data secure, because I control the class Point, and know that
+     * there is no way to modify the data when reading the reference.
+     * @return point2 of the volume
+     */
     public Point getP2() {
         return p2;
     }
