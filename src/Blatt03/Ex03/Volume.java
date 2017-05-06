@@ -41,8 +41,10 @@ public class Volume extends Geometry implements Comparable {
     @Override
     public double volume() {
         double v = 1.;
+        double[] p1 = this.p1.getCoordinates();
+        double[] p2 = this.p2.getCoordinates();
         for (int i = 0; i < dimensions(); i++) {
-            v *= Math.abs(p1.getCoordinates()[i] - p2.getCoordinates()[i]);
+            v *= Math.abs(p1[i] - p2[i]);
         }
         return v;
     }
@@ -92,7 +94,7 @@ public class Volume extends Geometry implements Comparable {
      * @return point1 of the volume
      */
     public Point getP1() {
-        return p1;
+        return new Point(p1);
     }
 
     /**
@@ -102,7 +104,7 @@ public class Volume extends Geometry implements Comparable {
      * @return point2 of the volume
      */
     public Point getP2() {
-        return p2;
+        return new Point(p2);
     }
 
     /**
@@ -149,7 +151,11 @@ public class Volume extends Geometry implements Comparable {
             throw new NullPointerException("Cannot compare to null");
         }
         if (o instanceof Geometry) {
-            return (int) (this.volume() - ((Geometry)o).volume());
+            if (this.volume() < ((Geometry)o).volume()) {
+                return -1;
+            } else if (this.volume() > ((Geometry)o).volume()) {
+                return 1;
+            } else return 0;
         } else {
             throw new ClassCastException("o is not of type Geometry.");
         }

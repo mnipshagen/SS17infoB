@@ -23,6 +23,11 @@ public class Point extends Geometry implements Comparable {
         this.coordinates = coords;
     }
 
+    public Point(Point p) {
+        super(p.dimensions());
+        this.coordinates = p.getCoordinates();
+    }
+
     /**
      * A point has a volume of 0
      * @return the volume of the point
@@ -124,7 +129,11 @@ public class Point extends Geometry implements Comparable {
             throw new NullPointerException("Cannot compare to null");
         }
         if (o instanceof Geometry) {
-            return (int) (this.volume() - ((Geometry)o).volume());
+            if (this.volume() < ((Geometry)o).volume()) {
+                return -1;
+            } else if (this.volume() > ((Geometry)o).volume()) {
+                return 1;
+            } else return 0;
         } else {
             throw new ClassCastException("o is not of type Geometry.");
         }
