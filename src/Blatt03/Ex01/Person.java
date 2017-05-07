@@ -38,14 +38,17 @@ public class Person {
     */
    public boolean equals(Object o) {
 
+      // null-check
       if (o == null) {
          return false;
       }
 
+      // reflexiveness
       if (o == this) {
          return true;
       }
 
+      // transitive and symmetric because equals for Strings is such
       if (o instanceof Person) {
          return this.name.equals(((Person) o).getName());
       }
