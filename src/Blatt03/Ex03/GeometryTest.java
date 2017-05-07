@@ -22,7 +22,7 @@ public class GeometryTest {
         Rectangle r2 = new Rectangle(new Point2D(0,0), new Point2D(-1,-1));
 
         // will turn true whenever something did not turn out as expected
-        boolean fail = true;
+        boolean fail;
 
         // checking dimensional check
         try{
