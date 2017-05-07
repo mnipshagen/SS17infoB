@@ -1,5 +1,4 @@
 package Blatt03.Ex02;
-
 /**
  * A Class, showing the different abilities of birds in the aviary
  *

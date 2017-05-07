@@ -1,5 +1,4 @@
 package Blatt03.Ex02;
-
 /**
  * A Bird is an animal that can fly.
  *

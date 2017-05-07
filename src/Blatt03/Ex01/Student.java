@@ -8,16 +8,16 @@ package Blatt03.Ex01;
 public class Student extends Person {
 
    /**
-    * Registration number of this Student.
+    * Registration number of this Blatt03.Ex01.Student.
     */
    private int matNr;
 
    /**
     * Custom constructor setting the name and the registration number of this
-    * Student.
+    * Blatt03.Ex01.Student.
     *
-    * @param name  the name of this Student
-    * @param matNr the registration number of this Student
+    * @param name  the name of this Blatt03.Ex01.Student
+    * @param matNr the registration number of this Blatt03.Ex01.Student
     */
    public Student(String name, int matNr) {
       super(name);
@@ -25,20 +25,20 @@ public class Student extends Person {
    }
 
    /**
-    * Returns the registration number of this Student.
+    * Returns the registration number of this Blatt03.Ex01.Student.
     *
-    * @return the registration number of this Student
+    * @return the registration number of this Blatt03.Ex01.Student
     */
    public int getMatNr() {
       return this.matNr;
    }
 
    /**
-    * A Student can only be equal to another Student with exactly the same name
+    * A Blatt03.Ex01.Student can only be equal to another Blatt03.Ex01.Student with exactly the same name
     * and matNr.
     *
     * @param o Object to be compared with
-    * @return if this Student is equal to o
+    * @return if this Blatt03.Ex01.Student is equal to o
     */
    public boolean equals(Object o) {
 
@@ -59,7 +59,7 @@ public class Student extends Person {
    }
 
    /**
-    * Produces a hash-value for this Student.
+    * Produces a hash-value for this Blatt03.Ex01.Student.
     *
     * @return the sum of matNr an the hashCode of name
     */

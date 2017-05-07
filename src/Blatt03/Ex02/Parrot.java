@@ -1,5 +1,4 @@
 package Blatt03.Ex02;
-
 /**
  * A Parrot is a kind of bird. They are among the most intelligent birds.
  * Some have the ability to imitate human voices.
@@ -7,7 +6,7 @@ package Blatt03.Ex02;
  * @author Kevin Trebing
  */
 
-public class Parrot extends Bird {
+public class Parrot extends Bird{
 	public String ability = "Talk";
 	
 	public String allAbilities(){

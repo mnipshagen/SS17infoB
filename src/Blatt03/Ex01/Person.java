@@ -1,40 +1,40 @@
 package Blatt03.Ex01;
 
 /**
- * Class representing a Person.
+ * Class representing a Blatt03.Ex01.Person.
  *
  * @author Mathias Menninghaus
  */
 public class Person {
 
    /**
-    * The name of this Person.
+    * The name of this Blatt03.Ex01.Person.
     */
    private String name;
 
    /**
-    * Constructor setting the name of this Person.
+    * Constructor setting the name of this Blatt03.Ex01.Person.
     *
-    * @param name the name of this Person
+    * @param name the name of this Blatt03.Ex01.Person
     */
    public Person(String name) {
       this.name = name;
    }
 
    /**
-    * Returns the name of this Person.
+    * Returns the name of this Blatt03.Ex01.Person.
     *
-    * @return the name of this Person
+    * @return the name of this Blatt03.Ex01.Person
     */
    public String getName() {
       return this.name;
    }
 
    /**
-    * A Person can only be equal to another Person with exactly the same name.
+    * A Blatt03.Ex01.Person can only be equal to another Blatt03.Ex01.Person with exactly the same name.
     *
     * @param o Object to be compared with
-    * @return if this Person is equal to o
+    * @return if this Blatt03.Ex01.Person is equal to o
     */
    public boolean equals(Object o) {
 
@@ -57,7 +57,7 @@ public class Person {
    }
 
    /**
-    * Produces the hash Code for this Person. Which simply is the hashCode of
+    * Produces the hash Code for this Blatt03.Ex01.Person. Which simply is the hashCode of
     * its name.
     *
     * @return hashCode of name
