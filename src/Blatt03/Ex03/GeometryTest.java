@@ -27,12 +27,8 @@ public class GeometryTest {
         // checking dimensional check
         try{
             new Point(1);
-        } catch (Exception e) {
-            fail = false;
-        }
-        if (fail) {
             System.out.println("Could initialise 1 dimensional Point.");
-        }
+        } catch (Exception ignored) {}
         fail = false;
 
         // checking whether dimensions are all correct
