@@ -14,7 +14,7 @@ public class Testklasse {
         Student s1 = new Student("Bart", 1),
                 s2 = new Student("Bart", 1),
                 s3 = new Student("Lisa", 2),
-                s4 = new Student("Homer", 3)
+                s4 = new Student("Homer", 3);
 
         // Test criteria for equals
         // 1. null-check
