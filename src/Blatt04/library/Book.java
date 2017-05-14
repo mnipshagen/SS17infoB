@@ -47,6 +47,7 @@ public class Book extends LibraryItem {
      */
     @Override
     public String getDescription() {
-        return super.getDescription() + "\n" + title + " was written by " + author;
+        String available = isBorrowed()? "not available" : "available";
+        return title + " was written by " + author + "\nThe item is currently " + available + ".";
     }
 }

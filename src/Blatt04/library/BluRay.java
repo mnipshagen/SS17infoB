@@ -47,6 +47,7 @@ public class BluRay extends LibraryItem {
      */
     @Override
     public String getDescription() {
-        return super.getDescription() + "\n" + title + " was directed by " + director;
+        String available = isBorrowed()? "not available" : "available";
+        return title + " was directed by " + director + "\nThe item is currently " + available + ".";
     }
 }

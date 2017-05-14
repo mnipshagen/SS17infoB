@@ -11,9 +11,6 @@ import Blatt04.library.util.List;
 public class Librarian {
 
     public static void main(String[] args) {
-        // generic item
-        LibraryItem thing = new LibraryItem();
-
         // some blurays
         BluRay br1 = new BluRay("The Lord of the Rings", "Peter Jackson");
         BluRay br2 = new BluRay("Beauty and the Beast","Bill Condon");
@@ -29,11 +26,10 @@ public class Librarian {
         assert br2.getDirector().equals("Bill Condon") : "BluRay director wrong";
         assert b1.getAuthor().equals("Joanne K. Rowling") : "Book author wrong";
         assert b3.getTitle().equals("Game of Thrones") : "Book title wrong";
-        assert !thing.isBorrowed() : "Availability false";
+        assert !br3.isBorrowed() : "Availability false";
 
         // adding all the items to a library
         Library l = new Library();
-        l.addItem(thing);
         l.addItem(br1);
         l.addItem(br2);
         l.addItem(br3);
@@ -45,8 +41,6 @@ public class Librarian {
         // then check whether we got them all
         List res = l.search("");
         res.reset();
-        assert res.elem() == thing : "First element is wrong";
-        res.advance();
         assert res.elem() == br1 : "Second element is wrong";
         res.advance();
         assert res.elem() == br2 : "Third element is wrong";

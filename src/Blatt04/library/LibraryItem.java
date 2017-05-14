@@ -6,7 +6,7 @@ package Blatt04.library;
  * @author Tobias Ludwig
  * @version likely final
  */
-public class LibraryItem {
+public abstract class LibraryItem {
     /**
      * whether the item is currently available
      */
@@ -39,12 +39,6 @@ public class LibraryItem {
      * Return a description of the item holding all information
      * @return the description
      */
-    public String getDescription() {
-        if(isBorrowed) {
-            return "This item is currently unavailable";
-        } else {
-            return "This item is currently available";
-        }
-    }
+    public abstract String getDescription();
 
 }
