@@ -1,31 +1,58 @@
-Definieren Sie eine Grammatik in EBNF-Syntax um Rechenoperationen mit den Grundrechenarten
-auf Brüchen darstellen zu können.
-Berücksichtigen Sie dabei folgendes:
-Es können beliebig viele Brüche durch Operatoren miteinander verknüpft werden. Eine jede solche Operation und jeder Bruch wiederum kann beliebig tief mit Klammern geschachtelt werden.
-Ein Bruch besteht immer aus Zähler, Bruchstrich und Nenner und darf keinen Nullteiler haben, der Zähler darf aber sehr wohl Null sein.
-Als Operatoren sind +, -, * und / erlaubt. Brüche, Klammern und Operatoren sollten immer durch
-ein Leerzeichen voneinander getrennt sein. Richten Sie sich auch nach folgenden Beispielwörtern der
-Grammatik:
-4/3 * 1/2 + -2/2 * ( 3/1 + -3/2 )
-( -1/2 ) + 3/4 * 2/1
-Lösen Sie diese Aufgabe schriftlich und zeichnen Sie passend zu Ihrer EBNF-Syntax das zugehörige
-Syntaxdiagramm.
+Disclaimer: Wie auch Wikipedia, richten wir uns nach dem ISO-Standard für EBNF.
+Daher das Semikolon am Zeilenende und das Komma zwischen den Nonterminals.
+Andere Besonderheiten:
+- Unsere Brüche enthalten immer einen positiven Nenner (nicht-Null aber auch kein Minus)
 
-((3/4 * 2/3) + 1/7) + 1/3
+ZifferOhneNull = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+Ziffer         = "0" | ZifferOhneNull ;
+PositiveZahl   = ZifferOhneNull , {Ziffer} ;
+NegativeZahl   = "-" , PositiveZahl ;
+Zahl           = NegativeZahl | "0" | PositiveZahl ;
+Bruch          = Zahl , "/" , PositiveZahl ;
+Operator       = " + " | " - " | " * " | " / " ;
+Term           = Bruch | Klammerterm | Term , Operator , Term ;
+Klammerterm    = "( " , Term , " )" ;
 
-((Bruch Operator Bruch) Operator Bruch) Operator Bruch
-(Klammerausdruck Operator Bruch) Operator Bruch
-Klammerausdruck Operator Bruch
-Ausdruck
 
-Bruch 			= Zaehler, "/", Nenner;
-Zaehler			= ["-"], ZifferNichtNull, {Ziffer};
-Nenner 			= ZifferNichtNull, {Ziffer};
-ZifferNichtNull	= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
-Ziffer 			= "0" | ZifferNichtNull;
+Syntax-Diagramme:
+=================
+(Terminals in "" und Nonterminals ohne Kasten, sorry)
 
-Space 			= " ";
-Term 			= Klammerausdruck | Ausdruck | Bruch;
-Ausdruck		= Term, {Space, Operator, Space, Term};
-Klammerausdruck = "(", Space, Ausdruck, Space, ")";
-Operator 		= "*", "/", "+", "-";
+
+ZifferOhneNull -+-> "1" --+--->
+                |-> "2" --|
+                |-> "3" --|
+                |-> "4" --|
+                |-> "5" --|
+                |-> "6" --|
+                |-> "7" --|
+                |-> "8" --|
+                +-> "9" --+
+                
+Ziffer -+-> "0" --------------+-->
+        |                     |
+        +-> ZiffernOhneNull --+
+
+PositiveZahl --- ZifferOhneNull -+- Ziffer -+-->
+                                 |          |
+                                 +--<-------+
+
+NegativeZahl --> "-" --> PositiveZahl -->
+
+Zahl -+-> NegativeZahl -+-->
+      +------> "0" -----|
+      +-> PositiveZahl--+
+
+Bruch --> Zahl --> "/" --> PositiveZahl -->
+
+Operator -+-> " + " --+-->
+          |-> " - " --|
+          |-> " * " --|
+          +-> " / " --+
+
+Klammerterm --> "( " --> Term --> " )" -->
+
+Term -+-+-> Bruch -------+----------------->
+      ^ |                +--> Operator --+
+      | +-> Klammerterm -+               |
+      +---------------------<------------+
