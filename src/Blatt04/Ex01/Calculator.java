@@ -94,12 +94,22 @@ public class Calculator {
         }
     }
 
+    /**
+     * Count decimal places.
+     * @param d
+     * @return decimal places
+     */
     private static int tenth(double d) {
         String text = Double.toString(Math.abs(d));
         int integerPlaces = text.indexOf('.');
         return text.length() - integerPlaces - 1;
     }
 
+    /**
+     * Determines if num is a Fraction by trying to parse it :P
+     * @param num
+     * @return true, if Fraction
+     */
     private static boolean identify(String num) {
         try{
             Fraction.parseFraction(num);
