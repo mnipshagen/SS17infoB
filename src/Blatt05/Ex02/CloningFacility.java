@@ -30,16 +30,12 @@ public class CloningFacility {
         // testing the non-absolute requirements
         // once with immutable type string
         // once with mutable type stringstack
-        try {
-            assert l1.clone() != l1 : "l1 == clone";
-            assert l1.clone().getClass() == l1.getClass() : "l1 class != clone.class";
-            assert l1.clone().equals(l1) : "clone not equals l1";
-            assert l2.clone() != l2 : "l2 == clone";
-            assert l2.clone().getClass() == l2.getClass() : "l2.class != clone.class";
-            assert l2.clone().equals(l2) : "clone not equals l2";
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
+        assert l1.clone() != l1 : "l1 == clone";
+        assert l1.clone().getClass() == l1.getClass() : "l1 class != clone.class";
+        assert l1.clone().equals(l1) : "clone not equals l1";
+        assert l2.clone() != l2 : "l2 == clone";
+        assert l2.clone().getClass() == l2.getClass() : "l2.class != clone.class";
+        assert l2.clone().equals(l2) : "clone not equals l2";
 
         System.out.println("Done.");
     }
