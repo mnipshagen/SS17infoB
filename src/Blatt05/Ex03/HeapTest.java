@@ -3,6 +3,11 @@ package Blatt05.Ex03;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * Authors: Moritz Nipshagen, Tobias Ludwig
+ *
+ * Test class for the typesafe Heap.
+ */
 public class HeapTest{
 
     public static void main(String[]args){
@@ -48,8 +53,7 @@ public class HeapTest{
     }
 
     /**
-     * Iterative sorting using Heapsort.
-     * Does not sort in-place, but destructively.
+     * Kind of a heap sort. Iteratively prints and removes the minimum.
      */
     public static void sort(Heap heap) {
         System.out.println("Elements sorted ascendingly: ");

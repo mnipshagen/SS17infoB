@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * Authors: Mo Nipshagen, Tobias Ludwig
+ * Authors: Moritz Nipshagen, Tobias Ludwig
  *
  * A typesafe heap working with elements implementing
  * Comparable or, alternatively ordered by a Comparator.
