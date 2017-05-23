@@ -79,8 +79,13 @@ public class Heap<T extends Comparable<T>> {
     /**
      * Delete the minimum, the root node.
      * Requires reorganizing of the array in O(log n).
+     * @throws IndexOutOfBoundsException if Heap is empty
      */
-    public void del_min() {
+    public void del_min() throws Exception {
+        // if heap empty, throw exception
+        if(this.empty())
+            throw new IndexOutOfBoundsException("Heap empty");
+
         // if only one element left, remove it and stop immediately
         if(array.length == 1){
             array = null;
