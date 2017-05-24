@@ -1,5 +1,7 @@
 package Blatt06.Ex02;
 
+import java.util.HashMap;
+
 /**
  * An extension of the earlier programmed Fraction class
  *
@@ -12,12 +14,44 @@ public class Fraction extends Number {
     private int numerator;
     // Nenner des Bruchs
     private int denominator;
+    // all known fractions
+    private static HashMap<Fraction,Fraction> fractions = new HashMap<>();
+    // the regex expression for fractions
+    public static final String REGEX = "\\(?\\s?-?\\s?\\d+\\s?/\\s?\\d+\\s?\\)?";
+
+    /**
+     * Represents an integer, so it will return a fraction with denominator 1 and numerator <code>n</code>
+     * @param n the integer to be represented by this fraction
+     * @return fraction with numerator <code>n</code> and denominator 1
+     */
+    public static Fraction getFraction(int n) {
+        return getFraction(n, 1);
+    }
+
+    /**
+     * Checks whether the Fraction to be created already exists in {@link #fractions} and if so returns the
+     * reference from the HashMap, else it returns the fraction and also adds it to the HashMap
+     * @param n numerator of the fraction to be created
+     * @param d denominator of the fraction to be created
+     * @return the cancelled fraction with numerator <code>n</code> and denominator <code>d</code>
+     */
+    public static Fraction getFraction(int n, int d) {
+        Fraction f = new Fraction(n, d);
+        if (fractions.containsKey(f)) {
+            return fractions.get(f);
+        } else {
+            fractions.put(f,f);
+            return f;
+        }
+    }
+
+
 
     /**
      * Konstruktor fuer ganze zahlen, weil Integer nicht ins Schema passt
      * @param n Der Zaehler, der Nenner ist bei Ganzzahlen 1
      */
-    public Fraction(int n){
+    private Fraction(int n){
         this(n, 1);
     }
 
@@ -26,11 +60,10 @@ public class Fraction extends Number {
      * @param n Zaehler
      * @param d Nenner
      */
-    public Fraction(int n, int d){
+    private Fraction(int n, int d){
         if (d == 0) {
             throw new IllegalArgumentException("Dividing by 0. Really?");
-        }
-        if (d < 0) {
+        }if (d < 0) {
             d *= -1;
             n *= -1;
         }
@@ -117,10 +150,9 @@ public class Fraction extends Number {
             int new_n = this.getNumerator() + addend.getNumerator();
             return new Fraction(new_n, this.getDenominator());
         }
-        int kgv = kgv(this.getDenominator(), addend.getDenominator());
-        int new_n = this.getNumerator() * kgv / this.getDenominator()
-                + addend.getNumerator() * kgv / addend.getDenominator();
-        return new Fraction(new_n,  kgv);
+        int new_n = this.getNumerator() * addend.getDenominator()
+                + addend.getNumerator() * this.getDenominator();
+        return new Fraction(new_n,  addend.getDenominator() * this.getDenominator());
     }
 
     /**
@@ -133,10 +165,9 @@ public class Fraction extends Number {
             int new_n = this.getNumerator() - subtrahend.getNumerator();
             return new Fraction(new_n, this.getDenominator());
         }
-        int kgv = kgv(this.getDenominator(), subtrahend.getDenominator());
-        int new_n = this.getNumerator() * kgv / this.getDenominator()
-                - subtrahend.getNumerator() * kgv / subtrahend.getDenominator();
-        return new Fraction(new_n,  kgv);
+        int new_n = this.getNumerator() * subtrahend.getDenominator()
+                - subtrahend.getNumerator() * this.getDenominator();
+        return new Fraction(new_n,  subtrahend.getDenominator() * this.getDenominator());
     }
 
     /**
@@ -148,14 +179,14 @@ public class Fraction extends Number {
      */
     @SuppressWarnings("Duplicates")
     public static Fraction parseFraction (String frac) {
-        if (!frac.matches("\\(?\\s?-?\\s?\\d+\\s?/\\s?\\d+\\s?\\)?")) {
+        if (!frac.matches(REGEX)) {
             throw new IllegalArgumentException("The string entered was not a recognised fraction.");
         }
         String[] nums = frac.replaceAll("[()\\s]","").split("/");
         int numerator = Integer.parseInt(nums[0]);
         int denominator = Integer.parseInt(nums[1]);
 
-        return new Fraction(numerator, denominator);
+        return getFraction(numerator, denominator);
     }
 
     /**
@@ -175,17 +206,6 @@ public class Fraction extends Number {
             }
         }
         return x;
-    }
-
-    /**
-     * since we need to equalise the denominators of the fractions to
-     * subtract or add them we need to find the least common multiplicative
-     * @param n first number
-     * @param m second number
-     * @return the lcm of the two given numbers
-     */
-    protected int kgv(int n, int m) {
-        return n * m / ggt(n,m);
     }
 
     /**
