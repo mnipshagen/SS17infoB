@@ -8,6 +8,7 @@ import java.util.HashMap;
  * @author Moritz Nipshagen
  * @author Tobias Ludwig
  */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Fraction extends Number {
 
     // Zaehler des Bruchs
@@ -44,8 +45,6 @@ public class Fraction extends Number {
             return f;
         }
     }
-
-
 
     /**
      * Konstruktor fuer ganze zahlen, weil Integer nicht ins Schema passt
@@ -262,5 +261,35 @@ public class Fraction extends Number {
     @Override
     public double doubleValue() {
         return ((double)this.numerator)/((double)this.denominator);
+    }
+
+    /**
+     * Tests whether obj and this are equal. This is only equals to another Fraction of same numerator and denominator
+     * @param obj Object to test equality against
+     * @return true if obj is a fraction and has the same denominator and numerator
+     */
+    @Override
+     public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Fraction other = (Fraction) obj;
+        return denominator == other.denominator && numerator == other.numerator;
+    }
+
+    /**
+     * A hash funciton to calculate the hash of a fraction using its numerator and denominator
+     * @return hashcode of the fraction
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 92821;
+        int result = 1;
+        result = prime * result + getDenominator();
+        result = prime * result + getNumerator();
+        return result;
     }
 }

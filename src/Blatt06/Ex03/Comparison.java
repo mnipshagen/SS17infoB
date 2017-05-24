@@ -6,11 +6,27 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 /**
- * Created by nipsh on 23/05/2017.
+ * This class tests different implementations of the interface {@link Collection} in regard of the methods
+ * {@link Collection#add(Object)}, {@link Collection#contains(Object)} and {@link Collection#remove(Object)}.
+ * As of version <code>1.0</code> three implementations are tested:
+ * {@link LinkedList}, {@link ArrayList} and {@link HashSet}
+ * Other implementations of Collection can easily be added:
+ *     - Create a new instance in the main
+ *     - add it to the call of {@link #testAll(Collection[])}
+ *     - add {@link Class#getSimpleName()} to the String array
+ * The position in the call of {@link #testAll(Collection[])} and in the string array <code>classes</code> have to be the same!
+ *
+ * If it is of concern to have more repetitions to test to get a better average, {@link #NOOFREPS} can be changed for that
+ * If other Objects are to be tested: The variable {@link #TESTVALUES} can be changed to any array type extending from {@link Object}
+ * @author Moritz Nipshagen
+ * @author Tobiuas Ludwig
+ * @version 1.0
  */
 public class Comparison {
 
+    // amount of repetitions to be done per class per test
     private static final int NOOFREPS = 10;
+    // the values to be tested
     private static final String[] TESTVALUES = {"This","Is","A","TestString"};
 
     public static void main(String[] args) {
@@ -24,6 +40,12 @@ public class Comparison {
 
     }
 
+    /**
+     * Calls all test methods implemented and saves the result of each in an array and then gives back a 2D array
+     * holding all results for one test
+     * @param tests the Classes to be tested
+     * @return an array where the first dimension corresponds to the test done and the second to the corresponding results
+     */
     private static long[][] testAll(Collection... tests) {
         long[][] results = new long[3][];
         results[0] = testAdd(tests);
@@ -33,7 +55,15 @@ public class Comparison {
         return results;
     }
 
+    /**
+     * prints all results in a nicely formatted table
+     * @param classes the classes that the tests were done on
+     * @param results the results of the tests
+     */
     private static void printResults(String[] classes, long[][] results) {
+        if (classes.length != results[0].length) {
+            throw new RuntimeException("Number of classes mismatched to number of results");
+        }
         System.out.printf("%15s|%15s|%15s|%15s|%n","Classes","add()","contains()","remove()");
         System.out.print(String.format("%1$15s|%1$15s|%1$15s|%1$15s|%n","+").replace(" ","-"));
         for(int i = 0; i < classes.length; i ++) {
@@ -46,6 +76,12 @@ public class Comparison {
         }
     }
 
+    /**
+     * Evaluates the average timed needed to insert an Object to a Collection
+     * Average taken over: {@link #NOOFREPS} times taken the average over all elements in {@link #TESTVALUES}
+     * @param tests the classes to be tested
+     * @return resulting average times
+     */
     private static long[] testAdd(Collection... tests) {
         long[] result = new long[tests.length];
 
@@ -70,6 +106,13 @@ public class Comparison {
         return result;
     }
 
+    /**
+     * Evaluates the average timed needed to find an Object to a Collection
+     * Average taken over: {@link #NOOFREPS} times taken the average over all elements in {@link #TESTVALUES}
+     * plus a string not contained in the collection
+     * @param tests the classes to be tested
+     * @return resulting average times
+     */
     private static long[] testContains(Collection... tests) {
         long[] result = new long[tests.length];
 
@@ -95,6 +138,13 @@ public class Comparison {
         return result;
     }
 
+    /**
+     * Evaluates the average timed needed to remove an Object to a Collection
+     * Average taken over: {@link #NOOFREPS} times taken the average over all elements in {@link #TESTVALUES}
+     * plus a string not contained in the collection
+     * @param tests the classes to be tested
+     * @return resulting average times
+     */
     private static long[] testRemove(Collection... tests) {
         long[] result = new long[tests.length];
 
