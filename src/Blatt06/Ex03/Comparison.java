@@ -95,6 +95,7 @@ public class Comparison {
                 for (String s :
                         TESTVALUES) {
                     long tmp = System.nanoTime();
+                    //noinspection unchecked
                     c.add(s);
                     time += System.nanoTime() - tmp;
                 }

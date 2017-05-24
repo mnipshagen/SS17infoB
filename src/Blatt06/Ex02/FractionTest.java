@@ -7,6 +7,7 @@ package Blatt06.Ex02;
  * @author Moritz Nipshagen
  * @author Tobias Ludwig
  */
+@SuppressWarnings("NumberEquality")
 public class FractionTest {
 
     public static void main(String[] args) {
