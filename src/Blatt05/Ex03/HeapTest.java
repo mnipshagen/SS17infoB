@@ -59,7 +59,9 @@ public class HeapTest{
         System.out.println("Elements sorted ascendingly: ");
         while(!heap.empty()){
             System.out.println(heap.get_min() +",\t Current Heap: "+ heap.toString());
-            heap.del_min();
+            try {
+                heap.del_min();
+            } catch (Exception e) {}
         }
     }
 }
