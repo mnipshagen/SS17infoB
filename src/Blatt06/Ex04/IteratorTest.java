@@ -46,6 +46,7 @@ public class IteratorTest {
         for(Integer i=0; i<10; i++)
             removeList.add(i);
         it = removeList.iterator();
+        it.next();
         it.remove();
         assert it.next() == 1 : "Failed to remove element from list";
     }
