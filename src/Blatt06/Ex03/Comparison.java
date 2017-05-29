@@ -16,13 +16,13 @@ import java.util.LinkedList;
  * If it is of concern to have more repetitions to test to get a better average, {@link #NOOFREPS} can be changed for that
  * If other Objects are to be tested: The variable {@link #TESTVALUES} can be changed to any array type extending from {@link Object}
  * @author Moritz Nipshagen
- * @author Tobiuas Ludwig
+ * @author Tobias Ludwig
  * @version 1.1
  */
 public class Comparison {
 
     // amount of repetitions to be done per class per test
-    private static final int NOOFREPS = 10;
+    private static final int NOOFREPS = 1000;
     // the values to be tested
     private static final String[] TESTVALUES = {"This","Is","A","TestString"};
 
