@@ -15,7 +15,7 @@ import java.util.NoSuchElementException;
  * @author Mo Nipshagen        (mnipshagen@uos.de)
  *
  */
-public class MyList<E> implements Cloneable, Iterable {
+public class MyList<E> implements Cloneable, Iterable<E> {
 
     /**
      * Reference on the first Entry of this List
@@ -87,8 +87,7 @@ public class MyList<E> implements Cloneable, Iterable {
      *
      * @return the actual element
      *
-     * @throws Runtthis.start;
-        }imeException
+     * @throws RuntimeException
      *            if the last Entry of this List already has been reached.
      */
     public E elem() {
@@ -189,7 +188,7 @@ public class MyList<E> implements Cloneable, Iterable {
      * the List's internal state was modified.
      * @param <E> the type parameter of MyList
      */
-    private class MyListIterator<E> implements Iterator {
+    private class MyListIterator<E> implements Iterator<E> {
 
         /**
          * Holds the modCount of the list when Iterator was created.
@@ -203,31 +202,42 @@ public class MyList<E> implements Cloneable, Iterable {
 
         /**
          * Creates new fast-fail Iterator for MyList.
-         * Resets the list, so we start iterating at the beginning.
+         * Starts iterating at the first element.
          * @param initialModCount the current modCount of the list
          */
         public MyListIterator(long initialModCount) {
             this.pos = (MyEntry<E>) MyList.this.begin;
-
             this.initialModCount = initialModCount;
         }
 
         @Override
+        /**
+         * True, if a subsequent element exists, false otherwise.
+         */
         public boolean hasNext() {
             if(MyList.this.modCount != this.initialModCount)
                 throw new ConcurrentModificationException();
-            return pos != null && pos.next == null;
+            return pos.next != null;
         }
 
         @Override
+        /**
+         * Advances and returns the next element.
+         */
         public E next() {
             if(MyList.this.modCount != this.initialModCount)
                 throw new ConcurrentModificationException();
+
+            if(pos.next == null)
+                throw new NoSuchElementException("Already at the end of this List");
             pos = pos.next;
-            return (E) pos;
+            return (E) pos.o;
         }
 
         @Override
+        /**
+         * Removes the element at point.
+         */
         public void remove() {
             if(MyList.this.modCount != this.initialModCount)
                 throw new ConcurrentModificationException();

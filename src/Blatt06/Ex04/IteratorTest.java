@@ -12,42 +12,55 @@ import java.util.Iterator;
 public class IteratorTest {
     public static void main(String[] args) {
         MyList<Integer> l = new MyList<>();
-        for(Integer i=0; i<10; i++)
+        for (Integer i = 0; i < 10; i++) {
             l.add(i);
-
-        int count = 0;
-
-        // for(Integer i : l) // why is this not working???
-
-        Iterator<Integer> it = l.iterator();
-        while(it.hasNext()){
-            it.next();
-            count++;
+            l.advance();
         }
-        assert count == 10 : "Not correct amount of iterations: " + count;
 
+        /*
+         * Testing whether iteration works
+         */
+        int count = 0, elem = 0;
+        Iterator<Integer> it = l.iterator();
+        while (it.hasNext()) {
+            elem = it.next();
+            count++;
+            assert elem == count : "Error while iterating";
+        }
+
+        /*
+         * Testing whether fail-fast works
+         */
+        l.reset();
         it = l.iterator();
         it.next();
         l.delete();
         try {
-            Integer el = (Integer) it.next();
+            Integer el = it.next();
             System.out.println("Should not be possible to iterate further after add-operation: " + el);
-        } catch(ConcurrentModificationException ignored){ }
-        it = l.iterator();
+        } catch (ConcurrentModificationException ignored) {
+        }
 
+        it = l.iterator();
         l.add(3);
         try {
-            Integer el = (Integer) it.next();
+            Integer el = it.next();
             System.out.println("Should not be possible to iterate further after add-operation: " + el);
-        } catch(ConcurrentModificationException ignored){ }
+        } catch (ConcurrentModificationException ignored) {
+        }
 
 
+        /*
+         * Testing remove of the iterator.
+         */
         MyList<Integer> removeList = new MyList<>();
-        for(Integer i=0; i<10; i++)
+        for (Integer i = 0; i < 10; i++){
             removeList.add(i);
+            removeList.advance();
+        }
         it = removeList.iterator();
-        it.next();
-        it.remove();
-        assert it.next() == 1 : "Failed to remove element from list";
+        it.next(); // element 1
+        it.remove(); // remove 2
+        assert it.next() == 3 : "Failed to remove element from list";
     }
 }
