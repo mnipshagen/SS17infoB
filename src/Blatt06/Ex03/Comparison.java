@@ -11,16 +11,13 @@ import java.util.LinkedList;
  * As of version <code>1.0</code> three implementations are tested:
  * {@link LinkedList}, {@link ArrayList} and {@link HashSet}
  * Other implementations of Collection can easily be added:
- *     - Create a new instance in the main
- *     - add it to the call of {@link #testAll(Collection[])}
- *     - add {@link Class#getSimpleName()} to the String array
- * The position in the call of {@link #testAll(Collection[])} and in the string array <code>classes</code> have to be the same!
+ *      Just add a <code>new Class()</code> statement into the array <code>c</code>
  *
  * If it is of concern to have more repetitions to test to get a better average, {@link #NOOFREPS} can be changed for that
  * If other Objects are to be tested: The variable {@link #TESTVALUES} can be changed to any array type extending from {@link Object}
  * @author Moritz Nipshagen
  * @author Tobiuas Ludwig
- * @version 1.0
+ * @version 1.1
  */
 public class Comparison {
 
@@ -30,12 +27,18 @@ public class Comparison {
     private static final String[] TESTVALUES = {"This","Is","A","TestString"};
 
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
-        ArrayList al = new ArrayList();
-        HashSet hs = new HashSet();
+        Collection[] c = {
+                new LinkedList(),
+                new ArrayList(),
+                new HashSet()
+        };
 
-        long[][] results = testAll(ll, al, hs);
-        String[] classes = {ll.getClass().getSimpleName(), al.getClass().getSimpleName(), hs.getClass().getSimpleName()};
+        long[][] results = testAll(c);
+        String[] classes = new String[results[0].length];
+        for (int i = 0; i < classes.length; i++) {
+            classes[i] = c[i].getClass().getSimpleName();
+        }
+
         printResults(classes, results);
 
     }
@@ -64,7 +67,7 @@ public class Comparison {
         if (classes.length != results[0].length) {
             throw new RuntimeException("Number of classes mismatched to number of results");
         }
-        System.out.printf("%15s|%15s|%15s|%15s|%n","Classes","add()","contains()","remove()");
+        System.out.printf("%-15s|%15s|%15s|%15s|%n","Classes","add()","contains()","remove()");
         System.out.print(String.format("%1$15s|%1$15s|%1$15s|%1$15s|%n","+").replace(" ","-"));
         for(int i = 0; i < classes.length; i ++) {
             Object[] a = new Object[results[i].length + 1];
@@ -72,7 +75,7 @@ public class Comparison {
             for(int j = 0; j < results[i].length; j++){
                 a[j+1] = results[i][j];
             }
-            System.out.printf("%15s|%12d ns|%12d ns|%12d ns|%n", a);
+            System.out.printf("%-15s|%12d ns|%12d ns|%12d ns|%n", a);
         }
     }
 
