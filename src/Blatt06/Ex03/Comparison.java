@@ -22,7 +22,7 @@ import java.util.LinkedList;
 public class Comparison {
 
     // amount of repetitions to be done per class per test
-    private static final int NOOFREPS = 1000;
+    private static final int NOOFREPS = 10000;
     // the values to be tested
     private static final String[] TESTVALUES = {"This","Is","A","TestString"};
 
