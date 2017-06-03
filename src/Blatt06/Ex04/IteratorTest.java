@@ -44,8 +44,8 @@ public class IteratorTest {
         it = l.iterator();
         l.add(3);
         try {
-            Integer el = it.next();
-            System.out.println("Should not be possible to iterate further after add-operation: " + el);
+            it.remove();
+            System.out.println("Should not be possible to iterate further after add-operation: ");
         } catch (ConcurrentModificationException ignored) {
         }
 
