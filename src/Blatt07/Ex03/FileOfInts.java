@@ -7,7 +7,6 @@ import java.util.Arrays;
 /**
  * Created by Mo on 31/05/2017.
  */
-@SuppressWarnings("ALL")
 public class FileOfInts {
 
     /**
@@ -35,10 +34,12 @@ public class FileOfInts {
     private String path;
 
     static {
-        /**
-         * create directories if necessary
+        /*
+          create directories if necessary
          */
-        new File(dir).mkdirs();
+        if (! (new File(dir).mkdirs())) {
+            throw new IOError(new IOException("Could not create necessary directories"));
+        }
     }
 
     /**
