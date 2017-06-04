@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Created by Mo on 31/05/2017.
+ * A wrapper class to handle a persistently saved Integer array
+ * It does so by saving an ArrayList representation of the file and maintaining sync between either
+ * @author Moritz Nipshagen
+ * @author Tobias Ludwig
+ * @version 0.9
  */
 public class FileOfInts {
 

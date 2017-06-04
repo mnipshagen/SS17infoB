@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.util.Arrays;
 
 /**
- * Created by nipsh on 03/06/2017.
+ * Class to test all methods and most Exceptions of {@link FileOfInts}
+ * @author Moritz Nipshagen
+ * @author Tobias Ludwig
  */
 public class persistency_test_for_ints {
 
