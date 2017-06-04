@@ -43,5 +43,7 @@ public class VisitorTest {
         // test if stopped at "": 2 elements ("first", "")
         visits = v2.getIterations();
         assert visits == 2 : "Expected 2 elements to be visited, instead: " + visits;
+
+        System.out.println("Done.");
     }
 }

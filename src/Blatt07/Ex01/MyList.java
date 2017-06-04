@@ -188,7 +188,7 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
     @Override
     public void accept(Visitor<E> v) {
         for (E elem : this) {
-            if(v.visit(elem) == false)
+            if(!v.visit(elem))
                 break;
         }
     }
