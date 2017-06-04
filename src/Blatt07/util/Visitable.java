@@ -1,4 +1,4 @@
-package util;
+package Blatt07.util;
 
 /**
  * Classes implementing the Visitable interface assure that they accept a

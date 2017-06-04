@@ -1,5 +1,8 @@
 package Blatt07.Ex01;
 
+import Blatt07.util.Visitable;
+import Blatt07.util.Visitor;
+
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;

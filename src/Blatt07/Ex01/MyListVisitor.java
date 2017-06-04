@@ -1,12 +1,15 @@
 package Blatt07.Ex01;
 
+import Blatt07.util.Visitable;
+import Blatt07.util.Visitor;
+
 /**
  * @author Mo Nipshagen (mnipshagen@uos.de)
  * @author Tobias Ludwig (toludwig@uos.de)
  *
  * A Visitor for the MyList.
  */
-public class MyListVisitor implements Visitor{
+public class MyListVisitor implements Visitor {
 
     /**
      * counts the iterations while traversing

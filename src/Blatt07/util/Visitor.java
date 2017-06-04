@@ -1,4 +1,4 @@
-package util;
+package Blatt07.util;
 
 /**
  * Classes that implement the interface Visitor assure that the implement the
