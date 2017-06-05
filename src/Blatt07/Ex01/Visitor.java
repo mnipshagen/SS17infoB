@@ -1,7 +1,7 @@
-package Blatt07.util;
+package Blatt07.Ex01;
 
 /**
- * Classes that implement the interface Visitor assure that the implement the
+ * Classes that implement the interface FileVisitor assure that the implement the
  * method {@link #visit(Object)}. The method {@link #visit(Object)} will be
  * called by a {@link Visitable} instance for every Object it visits during one
  * call of the method {@link Visitable#accept(Visitor)}.
@@ -9,7 +9,7 @@ package Blatt07.util;
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  * 
  * @param <E>
- *           type of the elements which can be visited by this Visitor
+ *           type of the elements which can be visited by this FileVisitor
  * 
  * @see Visitable
  */

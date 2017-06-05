@@ -1,8 +1,8 @@
-package Blatt07.util;
+package Blatt07.Ex01;
 
 /**
  * Classes implementing the Visitable interface assure that they accept a
- * Visitor and show that Visitor every element hold by this Visitable. For
+ * FileVisitor and show that FileVisitor every element hold by this Visitable. For
  * example a List, which implements the Visitable interface would traverse
  * through every element after its {@link #accept(Visitor)} method has been
  * called. It then calls for every of its elements {@link Visitor#visit(Object)}
@@ -27,7 +27,7 @@ public interface Visitable<E> {
     * {@link Visitor#visit(Object)} returns <code>false</code>
     * 
     * @param v
-    *           the Visitor which should be called for every element in this
+    *           the FileVisitor which should be called for every element in this
     *           Visitable instance
     */
    public void accept(Visitor<E> v);

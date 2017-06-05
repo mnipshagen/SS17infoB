@@ -1,13 +1,10 @@
 package Blatt07.Ex01;
 
-import Blatt07.util.Visitable;
-import Blatt07.util.Visitor;
-
 /**
  * @author Mo Nipshagen (mnipshagen@uos.de)
  * @author Tobias Ludwig (toludwig@uos.de)
  *
- * A Visitor for the MyList.
+ * A FileVisitor for the MyList.
  */
 public class MyListVisitor implements Visitor {
 
@@ -42,7 +39,7 @@ public class MyListVisitor implements Visitor {
      * Iterations are the number of visits. The iteration
      * in which {@link Visitor#visit(Object)} returns false
      * is still counted.
-     * @return the number of visits the Visitor has done
+     * @return the number of visits the FileVisitor has done
      */
     public int getIterations() {
         return iterations;
