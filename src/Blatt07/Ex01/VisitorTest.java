@@ -1,10 +1,12 @@
 package Blatt07.Ex01;
 
+import java.util.Objects;
+
 /**
  * @author Mo Nipshagen (mnipshagen@uos.de)
  * @author Tobias Ludwig (toludwig@uos.de)
  *
- * Test class for MyListVisitor.
+ * Test class for Visitable MyList.
  */
 public class VisitorTest {
     public static void main(String[] args) {
@@ -14,11 +16,11 @@ public class VisitorTest {
             list.advance();
         }
 
-        MyListVisitor visitor = new MyListVisitor();
-        list.accept(visitor);
+        CountingVisitor v0 = new CountingVisitor();
+        list.accept(v0);
         // test if everything was traversed: 10 elements (1-10)
-        int visits = visitor.getIterations();
-        assert visitor.getIterations() == 10 : "Not all elements visited. Instead: " + visits;
+        int visits = v0.getIterations();
+        assert visits == 10 : "Not all elements visited. Instead: " + visits;
 
 
         list.reset();
@@ -27,22 +29,42 @@ public class VisitorTest {
         }
         list.add(0); // insert a 0 as fifth element, 0 is a stop condition
 
-        MyListVisitor v1 = new MyListVisitor();
+        Visitor v1 = new Visitor(){
+            /**
+             * Stops visiting if it encounters an Integer == 0.
+             */
+            @Override
+            public boolean visit(Object o) {
+                if((Integer) o == 0)
+                    return false;
+                else return true;
+            }
+        };
         list.accept(v1);
         // test if stopped at 0: 6 elements (1,..., 5, 0)
-        visits = v1.getIterations();
-        assert visits == 6 : "Expected 6 elements to be visited, instead: " + visits;
+        Integer lastVisited = list.getLastVisited();
+        assert lastVisited == 0 : "Expected stopping at 0, instead at: " + lastVisited;
 
 
         MyList<String> stringList = new MyList<>();
         stringList.add("last"); // because we don't advance: LIFO
         stringList.add("");     // break condition
         stringList.add("first");
-        MyListVisitor v2 = new MyListVisitor();
+        Visitor v2 = new Visitor(){
+            /**
+             * Stops visiting if an empty String is encountered.
+             */
+            @Override
+            public boolean visit(Object o) {
+                if((String) o == "")
+                    return false;
+                else return true;
+            }
+        };
         stringList.accept(v2);
         // test if stopped at "": 2 elements ("first", "")
-        visits = v2.getIterations();
-        assert visits == 2 : "Expected 2 elements to be visited, instead: " + visits;
+        String lastVisitedString = stringList.getLastVisited();
+        assert lastVisitedString == "" : "Expected stopping at \"\", instead at: " + visits;
 
         System.out.println("Done.");
     }

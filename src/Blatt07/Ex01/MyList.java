@@ -33,6 +33,11 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
     private long modCount = 0;
 
     /**
+     * Stores the last element visited by a Visitor of the List.
+     */
+    private E lastVisited = null;
+
+    /**
      * Create a new empty List.
      */
     public MyList() {
@@ -182,12 +187,28 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
     }
 
 
+    /**
+     * Traverses all elements in the list till the visitor wants to stop.
+     * Has the side effect of changing the lastVisited entry after each element.
+     * @param v
+     *           the FileVisitor which should be called for every element in this
+     */
     @Override
     public void accept(Visitor<E> v) {
+        lastVisited = null;
         for (E elem : this) {
+            lastVisited = elem;
             if(!v.visit(elem))
                 break;
         }
+    }
+
+    /**
+     * For the Visitor to check whether all elements vere visited.
+     * @return the element last visited by the visitor
+     */
+    public E getLastVisited() {
+        return lastVisited;
     }
 
     /**

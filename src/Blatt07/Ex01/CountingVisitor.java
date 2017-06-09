@@ -6,7 +6,7 @@ package Blatt07.Ex01;
  *
  * A FileVisitor for the MyList.
  */
-public class MyListVisitor implements Visitor {
+public class CountingVisitor implements Visitor {
 
     /**
      * counts the iterations while traversing
