@@ -37,6 +37,7 @@ public class FileOfInts {
      */
     private String path;
 
+
     static {
         /*
           create directories if necessary
@@ -189,16 +190,7 @@ public class FileOfInts {
      * @param i Integer to add
      */
     public boolean add(Integer i) {
-        isActive();
-        a.add(i);
-        try {
-            save();
-            return true;
-        } catch (IOException e) {
-            System.err.println("Could not save file");
-            a.remove(i);
-            return false;
-        }
+        return add(pos,i);
     }
 
     /**
@@ -235,7 +227,7 @@ public class FileOfInts {
      */
     public Integer delete(int idx) {
         isActive();
-        Integer old = a.remove(idx);;
+        Integer old = a.remove(idx);
         try{
             save();
             return old;
@@ -290,7 +282,7 @@ public class FileOfInts {
             throw new FileNotFoundException("Did not find appropriate file at: " + this.handle.getAbsolutePath());
         }
         FileReader fr = new FileReader(handle);
-        char[] buff = new char[(int) handle.length()];
+        char[] buff = new char[(int) handle.length()]; // this is 4 times the length actually required, but I was unsure whether there are cases where Integers or ";" take more of 4 bytes
         fr.read(buff);
         fr.close();
         String buffer = String.valueOf(buff);
