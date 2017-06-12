@@ -31,7 +31,7 @@ public class CountingVisitor implements Visitor {
         if(o instanceof Integer)
             return ((Integer) o) != 0;
         else if(o instanceof String)
-            return ((String) o) != "";
+            return !((String) o).equals("");
         else return true;
     }
 
