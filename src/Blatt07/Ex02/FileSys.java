@@ -5,6 +5,8 @@ import Blatt07.Ex01.Visitor;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 import static Blatt07.Ex02.FileVisitorResult.*;
 
@@ -85,6 +87,7 @@ public class FileSys implements Visitable<File>{
         if (currFile.isDirectory()
                 && check == CONTINUE){
             File[] fileList = currFile.listFiles();
+            Arrays.sort(fileList);
             for (File f : fileList) {
                 if( exploreTree(f,v,depth+1) == STOP)
                     return STOP;
