@@ -56,7 +56,7 @@ public class VisitorTest {
              */
             @Override
             public boolean visit(Object o) {
-                if((String) o == "")
+                if(((String) o).equals(""))
                     return false;
                 else return true;
             }
@@ -64,7 +64,7 @@ public class VisitorTest {
         stringList.accept(v2);
         // test if stopped at "": 2 elements ("first", "")
         String lastVisitedString = stringList.getLastVisited();
-        assert lastVisitedString == "" : "Expected stopping at \"\", instead at: " + visits;
+        assert lastVisitedString.equals("") : "Expected stopping at \"\", instead at: " + visits;
 
         System.out.println("Done.");
     }
