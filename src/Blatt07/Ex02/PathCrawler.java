@@ -120,7 +120,7 @@ public class PathCrawler implements FileVisitor {
      * @return a nice printable string
      */
     private static String indentFile(int depth){
-        return new String(new char[depth-1]).replace("\0","│  ") + "├──<File> ";
+        return new String(new char[depth==0? 0:depth-1]).replace("\0","│  ") + "├──<File> ";
     }
 
     /**

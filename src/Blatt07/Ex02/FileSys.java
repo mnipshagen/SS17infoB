@@ -87,10 +87,12 @@ public class FileSys implements Visitable<File>{
         if (currFile.isDirectory()
                 && check == CONTINUE){
             File[] fileList = currFile.listFiles();
+            if (fileList != null) {
             Arrays.sort(fileList);
-            for (File f : fileList) {
-                if( exploreTree(f,v,depth+1) == STOP)
-                    return STOP;
+                for (File f : fileList) {
+                    if (exploreTree(f, v, depth + 1) == STOP)
+                        return STOP;
+                }
             }
         }
         return check;
