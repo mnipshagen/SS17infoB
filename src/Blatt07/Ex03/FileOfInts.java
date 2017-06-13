@@ -18,7 +18,7 @@ public class FileOfInts {
      */
     private static final String dir = System.getProperty("user.dir") + File.separator + "IntegerArrays" + File.separator;
     private static final String ext = ".array";
-    private static final String regex_file = "(\\d+;)*";
+    private static final String regex_file = "(\\d+"+ File.pathSeparator     +")*";
 
     /**
      * ArrayList to represent the data from the file. More powerful than simple array.
