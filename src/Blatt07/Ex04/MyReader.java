@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  *
  * Decorator class for reading linewise and finding a regex in the lines.
  */
-public class MyReader extends LineNumberReader {
+public class MyReader extends LineNumberReader implements AutoCloseable {
 
     private LineNumberReader reader;
 
@@ -25,6 +25,7 @@ public class MyReader extends LineNumberReader {
      * Decorator constructor.
      * @param reader a LineNumberReader
      * @param regex a String for matching the input with
+     * @throws java.util.regex.PatternSyntaxException if regex illegal
      */
     public MyReader(Reader reader, String regex) {
         super(reader);
