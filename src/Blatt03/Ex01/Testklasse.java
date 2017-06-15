@@ -3,12 +3,14 @@ package Blatt03.Ex01;
 /**
  * authors: mnipshagen, toludwig
  */
-public class Testklasse {
+public class Testklasse
+{
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
 
         // create new instances of Person and Student
-        Person  p1 = new Person("Homer"),
+        Person p1 = new Person("Homer"),
                 p2 = new Person("Homer"),
                 p3 = new Person("Homer"),
                 p4 = new Person("Marge");

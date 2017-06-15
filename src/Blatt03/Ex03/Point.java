@@ -2,11 +2,15 @@ package Blatt03.Ex03;
 
 /**
  * A class that describes a real n-dimensional point
+ *
  * @author Moritz Nipshagen
  * @author Tobias Ludwig
  * @version probably final
  */
-public class Point extends Geometry implements Comparable {
+public class Point
+        extends Geometry
+        implements Comparable
+{
 
     /**
      * stores the n coordinates of the point
@@ -16,24 +20,29 @@ public class Point extends Geometry implements Comparable {
     /**
      * creates a point from a given array/list/variable amount of doubles
      * dimension is implicitly modelled by the length of the given array
+     *
      * @param coords holds all the doubles
      */
-    public Point(double... coords) {
+    public Point(double... coords)
+    {
         super(coords.length);
         this.coordinates = coords;
     }
 
-    public Point(Point p) {
+    public Point(Point p)
+    {
         super(p.dimensions());
         this.coordinates = p.getCoordinates();
     }
 
     /**
      * A point has a volume of 0
+     *
      * @return the volume of the point
      */
     @Override
-    public double volume() {
+    public double volume()
+    {
         return 0;
     }
 
@@ -42,32 +51,38 @@ public class Point extends Geometry implements Comparable {
      * given var1 Geometry in a minimal way.
      * Realised by taking the min & max of
      * each single coordinate of all available points
+     *
      * @param var1 the other geometry to encapsulate
      * @return a new volume which encapsulates this and var1
      */
     @Override
-    public Geometry encapsulate(Geometry var1) {
-        if (this.dimensions() != var1.dimensions()) {
+    public Geometry encapsulate(Geometry var1)
+    {
+        if (this.dimensions() != var1.dimensions())
+        {
             return null;
         }
-        if (var1 instanceof Point) {
-            return new Volume(this, (Point)var1);
+        if (var1 instanceof Point)
+        {
+            return new Volume(this, (Point) var1);
         }
-        if (var1 instanceof Volume) {
+        if (var1 instanceof Volume)
+        {
             Volume v = (Volume) var1;
             double[] p1 = v.getP1().getCoordinates();
             double[] p2 = v.getP2().getCoordinates();
 
-            double[] pMax,pMin;
+            double[] pMax, pMin;
             pMin = new double[coordinates.length];
             pMax = new double[coordinates.length];
-            for (int i = 0; i < coordinates.length; i++) {
-                double x,x1,x2;
+            for (int i = 0; i < coordinates.length; i++)
+            {
+                double x, x1, x2;
                 x = coordinates[i];
                 x1 = p1[i];
                 x2 = p2[i];
-                pMin[i] = Math.min(Math.min(x,x1),x2);
-                pMax[i] = Math.max(Math.max(x,x1),x2);
+                pMin[i] = Math.min(Math.min(x, x1), x2);
+                pMax[i] = Math.max(Math.max(x, x1), x2);
             }
             return new Volume(new Point(pMax), new Point(pMin));
         }
@@ -77,11 +92,13 @@ public class Point extends Geometry implements Comparable {
     /**
      * returns a copy of the coordinates of the point
      * only a copy to not have an implicit way of changing the data
+     *
      * @return the coordinate array of the point
      */
-    public double[] getCoordinates() {
+    public double[] getCoordinates()
+    {
         double[] copy = new double[coordinates.length];
-        System.arraycopy(coordinates,0, copy, 0, copy.length);
+        System.arraycopy(coordinates, 0, copy, 0, copy.length);
         return copy;
     }
 
@@ -124,17 +141,26 @@ public class Point extends Geometry implements Comparable {
      *                              from being compared to this object.
      */
     @Override
-    public int compareTo(Object o) {
-        if (o == null) {
+    public int compareTo(Object o)
+    {
+        if (o == null)
+        {
             throw new NullPointerException("Cannot compare to null");
         }
-        if (o instanceof Geometry) {
-            if (this.volume() < ((Geometry)o).volume()) {
+        if (o instanceof Geometry)
+        {
+            if (this.volume() < ((Geometry) o).volume())
+            {
                 return -1;
-            } else if (this.volume() > ((Geometry)o).volume()) {
+            }
+            else if (this.volume() > ((Geometry) o).volume())
+            {
                 return 1;
-            } else return 0;
-        } else {
+            }
+            else return 0;
+        }
+        else
+        {
             throw new ClassCastException("o is not of type Geometry.");
         }
     }

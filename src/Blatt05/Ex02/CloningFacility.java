@@ -7,25 +7,37 @@ import Blatt02.Ex02.StringStack;
  * x.clone().getClass() == x.getClass() --> true
  * x.clone().equals(x)                  --> true
  */
-public class CloningFacility {
+public class CloningFacility
+{
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // test data
         List<String> l1 = new List<>();
-        l1.add("Hello"); l1.advance();
-        l1.add("World"); l1.advance();
-        l1.add("Smile"); l1.advance();
-        l1.add("for"); l1.advance();
-        l1.add("the"); l1.advance();
+        l1.add("Hello");
+        l1.advance();
+        l1.add("World");
+        l1.advance();
+        l1.add("Smile");
+        l1.advance();
+        l1.add("for");
+        l1.advance();
+        l1.add("the");
+        l1.advance();
         l1.add("Camera");
         List<StringStack> l2 = new List<>();
         StringStack x = new StringStack();
         x.push("meeple");
-        l2.add(x); l2.advance();
-        x.pop(); x.push("steeple");
-        l2.add(x); l2.advance();
-        x.pop(); x.push("moo");
-        l2.add(x); l2.advance();
+        l2.add(x);
+        l2.advance();
+        x.pop();
+        x.push("steeple");
+        l2.add(x);
+        l2.advance();
+        x.pop();
+        x.push("moo");
+        l2.add(x);
+        l2.advance();
 
         // testing the non-absolute requirements
         // once with immutable type string

@@ -8,9 +8,11 @@ package Blatt06.Ex02;
  * @author Tobias Ludwig
  */
 @SuppressWarnings("NumberEquality")
-public class FractionTest {
+public class FractionTest
+{
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         Fraction g1, g2, g3, h1, h2;
         g1 = Fraction.getFraction(3, 7);
         g2 = Fraction.parseFraction("9/21");

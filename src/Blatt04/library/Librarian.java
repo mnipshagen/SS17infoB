@@ -4,20 +4,23 @@ import Blatt04.library.util.List;
 
 /**
  * A class to test the library system
+ *
  * @author Moritz Nipshagen
  * @author Tobias Ludwig
  * @version likely final
  */
-public class Librarian {
+public class Librarian
+{
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // some blurays
         BluRay br1 = new BluRay("The Lord of the Rings", "Peter Jackson");
-        BluRay br2 = new BluRay("Beauty and the Beast","Bill Condon");
+        BluRay br2 = new BluRay("Beauty and the Beast", "Bill Condon");
         BluRay br3 = new BluRay("Harry Potter and the Prisoner of Azkaban", "Alfonso Cuarón");
 
         // some books
-        Book b1 = new Book("Harry Potter and the deathly hallows","Joanne K. Rowling");
+        Book b1 = new Book("Harry Potter and the deathly hallows", "Joanne K. Rowling");
         Book b2 = new Book("The Lord of the Rings", "J.R.R. Tolkien");
         Book b3 = new Book("Game of Thrones", "George R.R. Martin");
 
@@ -48,7 +51,7 @@ public class Librarian {
         assert res.elem() == br3 : "Fourth element is wrong";
         // checking borrowed function and if res really only holds referenced
         // Part 1
-        ((LibraryItem)res.elem()).setBorrowed(true);
+        ((LibraryItem) res.elem()).setBorrowed(true);
         res.advance();
         assert res.elem() == b1 : "Fifth element is wrong";
         res.advance();

@@ -6,26 +6,33 @@ package Blatt03.Ex03;
  * or: the cartesian product of n real intervals, where each interval is the
  * distance between of one dimension of the diagonally opposite points spanning
  * the hyperrectangle
+ *
  * @author Moritz Nipshagen
  * @author Tobias Ludwig
  * @version probably final
  */
-public class Volume extends Geometry implements Comparable {
+public class Volume
+        extends Geometry
+        implements Comparable
+{
 
     /**
      * the two diagonally opposite points spanning the hyperrectangle
      */
-    private Point p1,p2;
+    private Point p1, p2;
 
     /**
      * given two points of the same dimension, constructs a hyperrectangle between them
+     *
      * @param p1 one corner point
      * @param p2 the diagonally opposite point of p1 of the hyperrectangle
      * @throws RuntimeException if the dimensions of the points are not the same
      */
-    public Volume(Point p1, Point p2) {
+    public Volume(Point p1, Point p2)
+    {
         super(p1.dimensions());
-        if (p1.dimensions() != p2.dimensions()) {
+        if (p1.dimensions() != p2.dimensions())
+        {
             throw new RuntimeException("Cannot create Object with points of different dimensions");
         }
         this.p1 = p1;
@@ -36,14 +43,17 @@ public class Volume extends Geometry implements Comparable {
      * calculates the volume of the Hyperrectangle.
      * Done by building the product over the absolute distance between each
      * dimension of the rectangle
+     *
      * @return the volume of the Hyperrectangle
      */
     @Override
-    public double volume() {
+    public double volume()
+    {
         double v = 1.;
         double[] p1 = this.p1.getCoordinates();
         double[] p2 = this.p2.getCoordinates();
-        for (int i = 0; i < dimensions(); i++) {
+        for (int i = 0; i < dimensions(); i++)
+        {
             v *= Math.abs(p1[i] - p2[i]);
         }
         return v;
@@ -54,32 +64,44 @@ public class Volume extends Geometry implements Comparable {
      * given var1 Geometry in a minimal way.
      * Realised by taking the min & max of
      * each single coordinate of all available points
+     *
      * @param var1 the other geometry to encapsulate
      * @return a new volume which encapsulates this and var1
      */
     @Override
-    public Geometry encapsulate(Geometry var1) {
-        if (this.dimensions() != var1.dimensions()) {
+    public Geometry encapsulate(Geometry var1)
+    {
+        if (this.dimensions() != var1.dimensions())
+        {
             return null;
         }
         // initialise x3 = null, because var1 is a point, we won't need it
-        double[] x,x1,x2,x3 = null;
+        double[] x, x1, x2, x3 = null;
         x = p1.getCoordinates();
         x1 = p2.getCoordinates();
-        if (var1 instanceof Point) {
-            x2 = ((Point)var1).getCoordinates();
-        } else if (var1 instanceof Volume) {
-            x2 = ((Volume)var1).getP1().getCoordinates();
-            x3 = ((Volume)var1).getP2().getCoordinates();
-        } else {
+        if (var1 instanceof Point)
+        {
+            x2 = ((Point) var1).getCoordinates();
+        }
+        else if (var1 instanceof Volume)
+        {
+            x2 = ((Volume) var1).getP1().getCoordinates();
+            x3 = ((Volume) var1).getP2().getCoordinates();
+        }
+        else
+        {
             return null;
         }
         double[] max = new double[x.length], min = new double[x.length];
-        for (int i = 0; i < x.length; i++) {
-            if (x3 == null) {
-                max[i] = Math.max(Math.max(x[i],x1[i]),x2[i]);
-                min[i] = Math.min(Math.min(x[i],x1[i]),x2[i]);
-            } else {
+        for (int i = 0; i < x.length; i++)
+        {
+            if (x3 == null)
+            {
+                max[i] = Math.max(Math.max(x[i], x1[i]), x2[i]);
+                min[i] = Math.min(Math.min(x[i], x1[i]), x2[i]);
+            }
+            else
+            {
                 max[i] = Math.max(Math.max(x[i], x1[i]), Math.max(x2[i], x3[i]));
                 min[i] = Math.min(Math.min(x[i], x1[i]), Math.min(x2[i], x3[i]));
             }
@@ -91,9 +113,11 @@ public class Volume extends Geometry implements Comparable {
      * A way to read point1
      * Data secure, because I control the class Point, and know that
      * there is no way to modify the data when reading the reference.
+     *
      * @return point1 of the volume
      */
-    public Point getP1() {
+    public Point getP1()
+    {
         return new Point(p1);
     }
 
@@ -101,9 +125,11 @@ public class Volume extends Geometry implements Comparable {
      * A way to read point2
      * Data secure, because I control the class Point, and know that
      * there is no way to modify the data when reading the reference.
+     *
      * @return point2 of the volume
      */
-    public Point getP2() {
+    public Point getP2()
+    {
         return new Point(p2);
     }
 
@@ -146,17 +172,26 @@ public class Volume extends Geometry implements Comparable {
      *                              from being compared to this object.
      */
     @Override
-    public int compareTo(Object o) {
-        if (o == null) {
+    public int compareTo(Object o)
+    {
+        if (o == null)
+        {
             throw new NullPointerException("Cannot compare to null");
         }
-        if (o instanceof Geometry) {
-            if (this.volume() < ((Geometry)o).volume()) {
+        if (o instanceof Geometry)
+        {
+            if (this.volume() < ((Geometry) o).volume())
+            {
                 return -1;
-            } else if (this.volume() > ((Geometry)o).volume()) {
+            }
+            else if (this.volume() > ((Geometry) o).volume())
+            {
                 return 1;
-            } else return 0;
-        } else {
+            }
+            else return 0;
+        }
+        else
+        {
             throw new ClassCastException("o is not of type Geometry.");
         }
     }

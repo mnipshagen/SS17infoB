@@ -1,12 +1,12 @@
 package Blatt07.Ex03;
 
 import java.io.*;
-import java.util.Arrays;
 
 /**
  * Created by nipsh on 13/06/2017.
  */
-public class RandomAccessInts implements AutoCloseable
+public class RandomAccessInts
+        implements AutoCloseable
 {
     /**
      * The directory and file extension we will be using and the byte size of int
@@ -29,83 +29,102 @@ public class RandomAccessInts implements AutoCloseable
         /*
           create directories if necessary
          */
-        if (! (new File(dir).mkdirs()))
+        if (!(new File(dir).mkdirs()))
         {
             throw new IOError(new IOException("Could not create necessary directories"));
         }
     }
 
-    public RandomAccessInts(Integer[] array, String name) throws IOException {
-        this.path = buildFileName(name);
-            File f = new File(path);
-            if (f.exists())
-                if(!f.delete())
-                    throw new IOException("Could not delete File. Do we have Permission?");
-
-            this.handle = new RandomAccessFile(f, mode);
-            for (Integer i :
-                    array) {
-                this.handle.writeInt(i);
-            }
-    }
-
-    public RandomAccessInts(String name) throws FileNotFoundException {
+    public RandomAccessInts(Integer[] array, String name)
+            throws IOException
+    {
         this.path = buildFileName(name);
         File f = new File(path);
-            if (!f.exists())
-                throw new FileNotFoundException("Did not find file at " + path);
-            this.handle = new RandomAccessFile(f, mode);
+        if (f.exists())
+            if (!f.delete())
+                throw new IOException("Could not delete File. Do we have Permission?");
+
+        this.handle = new RandomAccessFile(f, mode);
+        for (Integer i :
+                array)
+        {
+            this.handle.writeInt(i);
+        }
     }
 
-    public int count() throws IOException {
+    public RandomAccessInts(String name)
+            throws FileNotFoundException
+    {
+        this.path = buildFileName(name);
+        File f = new File(path);
+        if (!f.exists())
+            throw new FileNotFoundException("Did not find file at " + path);
+        this.handle = new RandomAccessFile(f, mode);
+    }
+
+    public int count()
+            throws IOException
+    {
         return Math.toIntExact(handle.length() / byteSize);
     }
 
     public Integer get(int idx)
     {
-        try {
+        try
+        {
             this.handle.seek(idx * byteSize);
             Integer res = this.handle.readInt();
             this.handle.seek(0);
             return res;
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
             return null;
         }
     }
 
-    public boolean set(int idx, Integer o) throws IOException {
-            this.handle.seek(idx * byteSize);
-            this.handle.writeInt(o);
-            return true;
+    public boolean set(int idx, Integer o)
+            throws IOException
+    {
+        this.handle.seek(idx * byteSize);
+        this.handle.writeInt(o);
+        return true;
 
     }
 
     public boolean delete(int idx, Integer o)
     {
-        try {
-            this.handle.seek((idx+1) * byteSize);
-            byte[] tmp = new byte[(int) (this.handle.length() - (idx+1) * byteSize)];
+        try
+        {
+            this.handle.seek((idx + 1) * byteSize);
+            byte[] tmp = new byte[(int) (this.handle.length() - (idx + 1) * byteSize)];
             this.handle.readFully(tmp);
             this.handle.seek(idx * byteSize);
             this.handle.write(tmp);
             return true;
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
             return false;
         }
     }
 
-    public void close() throws IOException {
+    public void close()
+            throws IOException
+    {
         this.handle.close();
     }
 
     /**
      * helper function to generate file path
+     *
      * @param file name of file
      * @return whole path to file
      */
-    private String buildFileName(String file) {
+    private String buildFileName(String file)
+    {
         return dir + file + ext;
     }
 

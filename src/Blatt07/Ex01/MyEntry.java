@@ -6,40 +6,51 @@ package Blatt07.Ex01;
  *
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  */
-class MyEntry<E> implements Cloneable {
+class MyEntry<E>
+        implements Cloneable
+{
 
     MyEntry<E> next;
     E o;
 
-    MyEntry() {
+    MyEntry()
+    {
         this(null, null);
     }
 
-    MyEntry(E o) {
+    MyEntry(E o)
+    {
         this(o, null);
     }
 
-    MyEntry(E o, MyEntry<E> e) {
+    MyEntry(E o, MyEntry<E> e)
+    {
         this.o = o;
         this.next = e;
     }
 
     @Override
-    public MyEntry<E> clone() {
+    public MyEntry<E> clone()
+    {
         MyEntry<E> clone;
-        try {
+        try
+        {
             clone = (MyEntry<E>) super.clone();
-            if (next != null) {
+            if (next != null)
+            {
                 clone.next = next.clone();
             }
             return clone;
-        } catch (CloneNotSupportedException e) {
+        }
+        catch (CloneNotSupportedException e)
+        {
             throw new InternalError();
         }
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)
+    {
         if (this == obj)
             return true;
         if (obj == null)
@@ -47,21 +58,26 @@ class MyEntry<E> implements Cloneable {
         if (getClass() != obj.getClass())
             return false;
         MyEntry other = (MyEntry) obj;
-        if (next == null) {
+        if (next == null)
+        {
             if (other.next != null)
                 return false;
-        } else if (!next.equals(other.next))
+        }
+        else if (!next.equals(other.next))
             return false;
-        if (o == null) {
+        if (o == null)
+        {
             if (other.o != null)
                 return false;
-        } else if (!o.equals(other.o))
+        }
+        else if (!o.equals(other.o))
             return false;
         return true;
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((next == null) ? 0 : next.hashCode());

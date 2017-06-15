@@ -5,8 +5,10 @@ package Blatt02.Ex02;
  *
  * @authors mnipshagen, toludwig
  */
-public class StringStackTest{
-    public static void main(String[] args) {
+public class StringStackTest
+{
+    public static void main(String[] args)
+    {
         final StringStack original = new StringStack();
         original.push("first");
         original.push("second");
@@ -14,18 +16,22 @@ public class StringStackTest{
         original.push("fourth");
 
         StringStack copy = new StringStack(original);
-        while(!original.empty()){
-            System.out.println(String.format("%-20s","Original: " + original.peek()) +
-                    String.format("%-15s","Copy:" + copy.peek()));
-            if(original.peek() == copy.peek()) {
+        while (!original.empty())
+        {
+            System.out.println(String.format("%-20s", "Original: " + original.peek()) +
+                                       String.format("%-15s", "Copy:" + copy.peek()));
+            if (original.peek() == copy.peek())
+            {
                 System.out.println("If you see this, copy was shallow...");
             }
-            if(!original.pop().equals(copy.pop())) {
+            if (!original.pop().equals(copy.pop()))
+            {
                 System.out.println("Not equal, bad copy!");
                 break;
             }
         }
-        if(!copy.empty()) {
+        if (!copy.empty())
+        {
             System.out.println("Copy is not empty, bad copy!");
         }
 

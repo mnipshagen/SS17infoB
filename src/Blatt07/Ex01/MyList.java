@@ -13,9 +13,10 @@ import java.util.NoSuchElementException;
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  * @author Tobias Ludwig       (toludwig@uos.de)
  * @author Mo Nipshagen        (mnipshagen@uos.de)
- *
  */
-public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
+public class MyList<E>
+        implements Cloneable, Iterable<E>, Visitable<E>
+{
 
     /**
      * Reference on the first Entry of this List
@@ -40,7 +41,8 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
     /**
      * Create a new empty List.
      */
-    public MyList() {
+    public MyList()
+    {
         pos = begin = new MyEntry<E>();
     }
 
@@ -49,7 +51,8 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
      *
      * @return <code>true</code>, if there are no elements in this List
      */
-    public boolean empty() {
+    public boolean empty()
+    {
         return begin.next == null;
     }
 
@@ -59,16 +62,18 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
      * {@link #empty()} List will alway deliver <code>true</code>
      *
      * @return <code>true</code> if the last Entry in this List already has been
-     *         reached.
+     * reached.
      */
-    public boolean endpos() { // true, wenn am Ende
+    public boolean endpos()
+    { // true, wenn am Ende
         return pos.next == null;
     }
 
     /**
      * Returns to the beginning of this List.
      */
-    public void reset() {
+    public void reset()
+    {
         pos = begin;
         modCount++;
     }
@@ -76,11 +81,12 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
     /**
      * Advances one step in this List.
      *
-     * @throws NoSuchElementException
-     *            if the last Entry of this List already has been reached.
+     * @throws NoSuchElementException if the last Entry of this List already has been reached.
      */
-    public void advance() {
-        if (endpos()) {
+    public void advance()
+    {
+        if (endpos())
+        {
             throw new NoSuchElementException("Already at the end of this List");
         }
         pos = pos.next;
@@ -91,12 +97,12 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
      * Returns the actual element of this List.
      *
      * @return the actual element
-     *
-     * @throws RuntimeException
-     *            if the last Entry of this List already has been reached.
+     * @throws RuntimeException if the last Entry of this List already has been reached.
      */
-    public E elem() {
-        if (endpos()) {
+    public E elem()
+    {
+        if (endpos())
+        {
             throw new NoSuchElementException("Already at the end of this List");
         }
         return pos.next.o;
@@ -107,10 +113,10 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
      * element. After insertion the inserted element will become the actual
      * element.
      *
-     * @param x
-     *           the element to be inserted
+     * @param x the element to be inserted
      */
-    public void add(E x) {
+    public void add(E x)
+    {
         MyEntry<E> newone = new MyEntry<E>(x, pos.next);
 
         pos.next = newone;
@@ -121,11 +127,12 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
      * Deletes the actual element of this List. The element after the actual
      * element will become the new actual element.
      *
-     * @throws NoSuchElementException
-     *            if the last Entry of this List already has been reached.
+     * @throws NoSuchElementException if the last Entry of this List already has been reached.
      */
-    public void delete() {
-        if (endpos()) {
+    public void delete()
+    {
+        if (endpos())
+        {
             throw new NoSuchElementException("Already at the end of this List");
         }
         pos.next = pos.next.next;
@@ -141,21 +148,26 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
      *
      * @see Object#clone()
      */
-    public MyList<E> clone() {
-        try {
+    public MyList<E> clone()
+    {
+        try
+        {
 
             MyList<E> clone = (MyList<E>) super.clone();
             clone.begin = this.begin.clone();
             clone.pos = clone.begin;
 
             return clone;
-        } catch (CloneNotSupportedException e) {
+        }
+        catch (CloneNotSupportedException e)
+        {
             throw new InternalError();
         }
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((begin == null) ? 0 : begin.hashCode());
@@ -163,7 +175,8 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)
+    {
         if (this == obj)
             return true;
         if (obj == null)
@@ -179,10 +192,12 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
     /**
      * Factory for a new iterator.
      * Current modCount is stored for concurrency checks.
+     *
      * @return fast-fail list iterator
      */
     @Override
-    public Iterator<E> iterator() {
+    public Iterator<E> iterator()
+    {
         return new MyListIterator<E>(modCount);
     }
 
@@ -190,24 +205,28 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
     /**
      * Traverses all elements in the list till the visitor wants to stop.
      * Has the side effect of changing the lastVisited entry after each element.
-     * @param v
-     *           the FileVisitor which should be called for every element in this
+     *
+     * @param v the FileVisitor which should be called for every element in this
      */
     @Override
-    public void accept(Visitor<E> v) {
+    public void accept(Visitor<E> v)
+    {
         lastVisited = null;
-        for (E elem : this) {
+        for (E elem : this)
+        {
             lastVisited = elem;
-            if(!v.visit(elem))
+            if (!v.visit(elem))
                 break;
         }
     }
 
     /**
      * For the Visitor to check whether all elements vere visited.
+     *
      * @return the element last visited by the visitor
      */
-    public E getLastVisited() {
+    public E getLastVisited()
+    {
         return lastVisited;
     }
 
@@ -215,9 +234,12 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
      * A fast-fail Iterator for MyList.
      * Will throw an ConcurrentModificationException each time
      * the List's internal state was modified.
+     *
      * @param <E> the type parameter of MyList
      */
-    private class MyListIterator<E> implements Iterator<E> {
+    private class MyListIterator<E>
+            implements Iterator<E>
+    {
 
         /**
          * Holds the modCount of the list when Iterator was created.
@@ -232,9 +254,11 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
         /**
          * Creates new fast-fail Iterator for MyList.
          * Starts iterating at the first element.
+         *
          * @param initialModCount the current modCount of the list
          */
-        public MyListIterator(long initialModCount) {
+        public MyListIterator(long initialModCount)
+        {
             this.pos = (MyEntry<E>) MyList.this.begin;
             this.initialModCount = initialModCount;
         }
@@ -243,8 +267,9 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
         /**
          * True, if a subsequent element exists, false otherwise.
          */
-        public boolean hasNext() {
-            if(MyList.this.modCount != this.initialModCount)
+        public boolean hasNext()
+        {
+            if (MyList.this.modCount != this.initialModCount)
                 throw new ConcurrentModificationException();
             return pos.next != null;
         }
@@ -253,11 +278,12 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
         /**
          * Advances and returns the next element.
          */
-        public E next() {
-            if(MyList.this.modCount != this.initialModCount)
+        public E next()
+        {
+            if (MyList.this.modCount != this.initialModCount)
                 throw new ConcurrentModificationException();
 
-            if(pos.next == null)
+            if (pos.next == null)
                 throw new NoSuchElementException("Already at the end of this List");
             pos = pos.next;
             return (E) pos.o;
@@ -267,11 +293,12 @@ public class MyList<E> implements Cloneable, Iterable<E>, Visitable<E> {
         /**
          * Removes the element at point.
          */
-        public void remove() {
-            if(MyList.this.modCount != this.initialModCount)
+        public void remove()
+        {
+            if (MyList.this.modCount != this.initialModCount)
                 throw new ConcurrentModificationException();
 
-            if(pos.next == null)
+            if (pos.next == null)
                 throw new NoSuchElementException("Already at the end of this List");
             pos.next = pos.next.next;
         }

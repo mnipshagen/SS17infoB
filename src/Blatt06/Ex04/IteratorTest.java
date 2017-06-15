@@ -9,10 +9,13 @@ import java.util.Iterator;
  * @author Tobias Ludwig (toludwig@uos.de)
  * @author Mo Nipshagen  (mnipshagen@uos.de)
  */
-public class IteratorTest {
-    public static void main(String[] args) {
+public class IteratorTest
+{
+    public static void main(String[] args)
+    {
         MyList<Integer> l = new MyList<>();
-        for (Integer i = 0; i < 10; i++) {
+        for (Integer i = 0; i < 10; i++)
+        {
             l.add(i);
             l.advance();
         }
@@ -22,7 +25,8 @@ public class IteratorTest {
          */
         int count = 0, elem = 0;
         Iterator<Integer> it = l.iterator();
-        while (it.hasNext()) {
+        while (it.hasNext())
+        {
             elem = it.next();
             count++;
             assert elem == count : "Error while iterating";
@@ -35,18 +39,24 @@ public class IteratorTest {
         it = l.iterator();
         it.next();
         l.delete();
-        try {
+        try
+        {
             Integer el = it.next();
             System.out.println("Should not be possible to iterate further after add-operation: " + el);
-        } catch (ConcurrentModificationException ignored) {
+        }
+        catch (ConcurrentModificationException ignored)
+        {
         }
 
         it = l.iterator();
         l.add(3);
-        try {
+        try
+        {
             it.remove();
             System.out.println("Should not be possible to iterate further after add-operation: ");
-        } catch (ConcurrentModificationException ignored) {
+        }
+        catch (ConcurrentModificationException ignored)
+        {
         }
 
 
@@ -54,7 +64,8 @@ public class IteratorTest {
          * Testing remove of the iterator.
          */
         MyList<Integer> removeList = new MyList<>();
-        for (Integer i = 0; i < 10; i++){
+        for (Integer i = 0; i < 10; i++)
+        {
             removeList.add(i);
             removeList.advance();
         }

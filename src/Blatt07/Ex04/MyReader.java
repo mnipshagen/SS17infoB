@@ -10,10 +10,13 @@ import java.util.regex.Pattern;
 /**
  * @author Tobias Ludwig (toludwig)
  * @author Mo Nipshagen (mnipshagen)
- *
- * Decorator class for reading linewise and finding a regex in the lines.
+ *         <p>
+ *         Decorator class for reading linewise and finding a regex in the lines.
  */
-public class MyReader extends LineNumberReader implements AutoCloseable {
+public class MyReader
+        extends LineNumberReader
+        implements AutoCloseable
+{
 
     private LineNumberReader reader;
 
@@ -23,11 +26,13 @@ public class MyReader extends LineNumberReader implements AutoCloseable {
 
     /**
      * Decorator constructor.
+     *
      * @param reader a LineNumberReader
-     * @param regex a String for matching the input with
+     * @param regex  a String for matching the input with
      * @throws java.util.regex.PatternSyntaxException if regex illegal
      */
-    public MyReader(Reader reader, String regex) {
+    public MyReader(Reader reader, String regex)
+    {
         super(reader);
         this.reader = new LineNumberReader(reader);
         this.pattern = Pattern.compile(regex);
@@ -36,36 +41,45 @@ public class MyReader extends LineNumberReader implements AutoCloseable {
 
     /**
      * Decorator for {@link LineNumberReader#readLine()}.
+     *
      * @return the line read, or null if at the end of the file
      * @throws IOException only EOF exceptions are caught, see above
      */
-    public String readLine() throws IOException {
-        try {
+    public String readLine()
+            throws IOException
+    {
+        try
+        {
             occurrences = 0;
             String line = reader.readLine();
-            if(line == null) // end of stream is reached
+            if (line == null) // end of stream is reached
                 return null;
             line.trim();
             matcher = pattern.matcher(line);
-            while(matcher.find()) occurrences++;
+            while (matcher.find()) occurrences++;
             return line;
-        } catch (EOFException eof) {
+        }
+        catch (EOFException eof)
+        {
             return null;
         }
     }
 
     /**
      * Decorator for {@link LineNumberReader#getLineNumber()}
+     *
      * @return the line number of the reader
      */
-    public int getLineNumber(){
+    public int getLineNumber()
+    {
         return reader.getLineNumber();
     }
 
     /**
      * @return number of matches in the current line
      */
-    public int getAmountOfMatches(){
+    public int getAmountOfMatches()
+    {
         return occurrences;
     }
 
