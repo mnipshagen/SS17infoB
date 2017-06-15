@@ -33,21 +33,28 @@ public class Arena
      * @return Sector the coordinates are in or 0 for the centre or -1 for outside
      */
     public int getArea(double x, double y)
-    {
+    {   // if the length of the vector is bigger than the radius of the arena, the coordinates are in no sector
         if (Math.sqrt(x * x + y * y) > r)
         {
             return -1;
         }
+        // did we just arrive on the island?
         if (x == 0 && y == 0)
         {
             return 0;
         }
+        // convenience
         double pi6 = Math.PI / 6.0;
+        // calculating angle between vector and x-axis.
+        // shift by -pi/2 since the y-axis is our 0 line and not the x axis
+        // positive angle, counter-clockwise
         double theta = Math.atan2(y, x) - (Math.PI / 2.0);
 
         int area;
+        // if angle is negative...
         if (theta <= 0)
         {
+            // ...start counting up for each 30 degrees we can subtract until we cross the 0 line
             area = 0;
             while (theta <= 0)
             {
@@ -55,8 +62,9 @@ public class Arena
                 area++;
             }
         }
-        else
+        else // angle is positive...
         {
+            // ...start counting down for each 30 degrees we can subtract
             area = 13;
             while (theta > 0)
             {
