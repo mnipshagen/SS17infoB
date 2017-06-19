@@ -85,6 +85,13 @@ public class Replace
      */
     private static void manual(Exception e)
     {
+        System.out.println("+----------------------------------------------------------+");
+        System.out.println("|            Your command seems to be faulty               |");
+        System.out.println("|           Formulate your command like this:              |");
+        System.out.println("|        [-r] Search Replacement [FileOrDirectory]         |");
+        System.out.println("|                                                          |");
+        System.out.println("|             The error stacktrace is below                |");
+        System.out.println("+----------------------------------------------------------+");
         e.printStackTrace();
     }
 
