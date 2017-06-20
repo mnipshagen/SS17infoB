@@ -43,8 +43,10 @@ public class HungerGames
         {
 //            String s = String.format("Tribute %4d %-10s is at coordinates x: % 4.2f ; y: % 4.2f, putting her in sector %2d", i, t[i].getName(), t[i].getX(), t[i].getY(), a.getArea(t[i].getX(), t[i].getY()));
 //            System.out.println(s);
-            assert a.getArea(t[i].getX(), t[i].getY()) == i : "Tribute " + t[i].getName() + " in wrong area! Should be " + i + "but is " + a.getArea(t[i].getX(), t[i].getY()) + ".";
+            assert a.getArea(t[i].getX(), t[i].getY()) == i : "Tribute " + t[i].getName() + " in wrong area! Should be " + i + " but is " + a.getArea(t[i].getX(), t[i].getY()) + ".";
         }
         assert a.getArea(t[13].getX(), t[13].getY()) == -1 : "Tribute " + t[13].getName() + " in wrong area! Should be -1 but is " + a.getArea(t[13].getX(), t[13].getY()) + ".";
+
+        System.out.println("Done.");
     }
 }

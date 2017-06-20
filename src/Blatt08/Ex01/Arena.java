@@ -50,27 +50,18 @@ public class Arena
         // positive angle, counter-clockwise
         double theta = Math.atan2(y, x) - (Math.PI / 2.0);
 
-        int area;
-        // if angle is negative...
-        if (theta <= 0)
+        int area = 0;
+        int addend = 1;
+        if (theta > 0)
         {
-            // ...start counting up for each 30 degrees we can subtract until we cross the 0 line
-            area = 0;
-            while (theta <= 0)
-            {
-                theta += pi6;
-                area++;
-            }
-        }
-        else // angle is positive...
-        {
-            // ...start counting down for each 30 degrees we can subtract
+            theta *= -1;
             area = 13;
-            while (theta > 0)
-            {
-                theta -= pi6;
-                area--;
-            }
+            addend = -1;
+        }
+        while (theta <= 0)
+        {
+            theta += pi6;
+            area += addend;
         }
         return area;
     }
