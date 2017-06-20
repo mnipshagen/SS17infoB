@@ -47,26 +47,13 @@ public class Fibonacci {
      * Deserializes and restores the HashMap.
      */
     private static void deserialize(){
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-        try {
-            fis = new FileInputStream(serFile);
-            ois = new ObjectInputStream(fis);
+        try(FileInputStream fis = new FileInputStream(serFile); ObjectInputStream ois = new ObjectInputStream(fis)) {
             fibonacciHash = (HashMap<Integer, Long>) ois.readObject();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            System.out.println("Could not deserialize.");
-        } finally {
-            try {
-                fis.close();
-                ois.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            System.err.println("Could not deserialize.");
         }
     }
 
@@ -74,25 +61,12 @@ public class Fibonacci {
      * Serializes the HashMap.
      */
     private static void serialize() {
-        FileOutputStream fos = null;
-        ObjectOutputStream oos = null;
-        try{
-            fos = new FileOutputStream(serFile);
-            oos = new ObjectOutputStream(fos);
+        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(serFile, false))){
             oos.writeObject(fibonacciHash);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fos.flush();
-                oos.close();
-                oos.flush();
-                oos.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 
@@ -131,7 +105,7 @@ public class Fibonacci {
         try {
             Long before = System.nanoTime();
             System.out.println(fibonacci(Integer.parseInt(args[0])));
-            System.out.println("Took me " + (System.nanoTime() - before) + " nanos.");
+            System.out.printf("Took me " + ((System.nanoTime() - before)/1000000.0) + " milliseconds.");
 
         } catch (IllegalArgumentException ex) {
             printUsage();
