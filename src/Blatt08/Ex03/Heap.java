@@ -69,12 +69,8 @@ public class Heap<E> implements Serializable{
      * @param filename to where?
      */
     public void serialize(String filename){
-        FileOutputStream fos = null;
-        ObjectOutputStream oos = null;
-        try {
-            fos = new FileOutputStream(filename);
-            oos = new ObjectOutputStream(fos);
-
+        try ( ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename, false)) )
+        {
             // serialize only the filled size of the heap
             Object[] filledHeap = new Object[size];
             System.arraycopy(this.heap, 0, filledHeap, 0, this.size);
@@ -88,13 +84,6 @@ public class Heap<E> implements Serializable{
             System.out.println("File could not be found.");
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                oos.flush();
-                oos.close();
-                fos.flush();
-                fos.close();
-            } catch (IOException e){}
         }
     }
 
@@ -104,11 +93,8 @@ public class Heap<E> implements Serializable{
      * @return a new instance of Heap deserialized from the file
      */
     public static Heap deserialize(String filename){
-        FileInputStream fis = null;
-        ObjectInputStream ois = null;
-        try {
-            fis = new FileInputStream(filename);
-            ois = new ObjectInputStream(fis);
+        try ( ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename)) )
+        {
 
             // Deserialization goes in the same order as the serialization (FIFO)
             // Firstly, reload the array, it has no null elements, so its size is its length
@@ -132,11 +118,6 @@ public class Heap<E> implements Serializable{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Class could not be deserialized.");
-        } finally {
-            try {
-                ois.close();
-                fis.close();
-            } catch (IOException e){}
         }
         return null; // alibi return
     }
