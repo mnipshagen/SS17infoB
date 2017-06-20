@@ -16,7 +16,6 @@ public class HeapTest {
         for (Integer i : sortedIntegers)
             heap.insert(i);
 
-        System.out.println(System.getProperty("user.dir"));
         final String FILENAME = "./src/Blatt08/ser/test.ser";
         heap.serialize(FILENAME);
 
