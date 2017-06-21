@@ -3,22 +3,37 @@ package Blatt09.Ex01_Mo;
 import Blatt09.io.*;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.TimerTask;
-import java.util.concurrent.atomic.AtomicLong;
 
 import static Blatt09.io.FileVisitResult.*;
 
 /**
- * Created by Mo on 21/06/2017.
+ * This Timer Task takes a file to watch over.
+ * Everytime it is run, it walks the whole tree if the given file was a directory.
+ * If the size changed, then we print this to the terminal.
+ *
+ * This approach was chosen since:
+ *     * Directories have no size attribute that would be callable directly
+ *     * The "last modified" timestamp gets updated in such a fucked up way that it was near
+ *          impossible to implement all possibilities for all file systems
+ *
+ * I am aware that this is immensly ineffective for larger file trees, but that is in the nature of this task
+ *
+ * @author Moritz Nipshagen
+ * @author Tobias Ludwig
+ * @version 1.0
  */
 public class FileObserverTimerTask extends TimerTask {
 
+    // the filesystem to crawl
     private final FileSystem sys;
+    // the root file we are watching (saved for printing reasons)
     private final File watching;
+    // this is where we save the byte size
     private long size;
+    // this is our visitor
     private final Crawler crawler = new Crawler();
-    private boolean run = true;
+    // unit conversion for readability
     private final String[] sizeUnits = {"", "Kilo","Mega","Giga","Tera","Peta"};
 
     public FileObserverTimerTask(File file) throws IllegalArgumentException
@@ -27,12 +42,13 @@ public class FileObserverTimerTask extends TimerTask {
         this.watching = file;
     }
     /**
-     * The action to be performed by this timer task.
+     * Save oldsize, reset size to 0, start crawling
+     * If size changed -> print
      */
     @Override
     public void run() {
         long oldSize = size;
-        long time = System.nanoTime();
+//        long time = System.nanoTime();
         size = 0;
         sys.accept(crawler);
         if (oldSize != size)
@@ -41,8 +57,12 @@ public class FileObserverTimerTask extends TimerTask {
 //        System.out.println("Old size was " + oldSize + " and the new size is " + size);
     }
 
+    /**
+     * Convenience method for formatting output when size changed
+     */
     private void print()
     {
+        // converting size to a reasonable unit (1 MB really looks ugly, when expressed in byte size)
         String unit = "Bytes";
         double sizePrint = size;
         int thousands = -1;
@@ -54,6 +74,7 @@ public class FileObserverTimerTask extends TimerTask {
         sizePrint *= 1024;
         unit = sizeUnits[thousands].concat(unit);
 
+        // printy print
         System.out.println(
             String.format(
                 ">> The current size of %s is\n%.3f %s",
@@ -62,10 +83,17 @@ public class FileObserverTimerTask extends TimerTask {
         );
     }
 
+    /**
+     * to be called when thread is shut down
+     */
     public void die() {
         System.out.println("Stopping to watch " + watching + ".");
     }
 
+    /**
+     * The visitor to crawl the files and add up all their sizes
+     * Whatever happens we continue on through the tree.
+     */
     private class Crawler implements FileVisitor
     {
         @Override
@@ -84,6 +112,12 @@ public class FileObserverTimerTask extends TimerTask {
             return CONTINUE;
         }
 
+        /**
+         * encountering a file: add its size
+         * @param file
+         *           the file that is visited
+         * @return CONTINUE, no matter what
+         */
         @Override
         public FileVisitResult visitFile(File file) {
             size += (file.length());
