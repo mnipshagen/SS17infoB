@@ -13,7 +13,7 @@ import static Blatt09.io.FileVisitResult.*;
  * If the size changed, then we print this to the terminal.
  *
  * This approach was chosen since:
- *     * Directories have no size attribute that would be callable directly
+ *     * Directories have no overall size attribute that would be callable directly
  *     * The "last modified" timestamp gets updated in such a fucked up way that it was near
  *          impossible to implement all possibilities for all file systems
  *
@@ -21,7 +21,7 @@ import static Blatt09.io.FileVisitResult.*;
  *
  * @author Moritz Nipshagen
  * @author Tobias Ludwig
- * @version 1.0
+ * @version 1.1
  */
 public class FileObserverTimerTask extends TimerTask {
 
@@ -103,6 +103,7 @@ public class FileObserverTimerTask extends TimerTask {
 
         @Override
         public FileVisitResult preVisitDirectory(File dir) {
+            size += dir.length();
             return CONTINUE;
         }
 
