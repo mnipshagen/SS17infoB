@@ -23,6 +23,7 @@ import java.util.concurrent.Future;
  *
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  */
+@SuppressWarnings("WeakerAccess")
 public class Ant implements Runnable {
     /**
      * This static pool is responsible to schedule our mighty ant workforce
@@ -48,9 +49,9 @@ public class Ant implements Runnable {
      * all the data an ant needs
      */
     private final AntField fields;
-    int x;
-    int y;
-    int steps;
+    private int x;
+    private int y;
+    private int steps;
 
 
     /**
@@ -79,8 +80,18 @@ public class Ant implements Runnable {
      * Thus, if this method is invoked by a different class, be careful.
      */
     public void run() {
+        checkOut();
+    }
+
+    private void checkOut()
+    {
         // ants from the future. pew pew
         Vector<Future> roboAnts = new Vector<>();
+        int x = this.x;
+        int y = this.y;
+        int steps = this.steps;
+        // the first field is claimed by this little ant itself
+        boolean first = true;
 
         // and check the neighbours out ;)
         for (Pair p : moores) {
@@ -89,12 +100,31 @@ public class Ant implements Runnable {
             Field f = fields.getField(nx, ny);
             // fields may be null if negative -> they are walls. We cannot walk on walls. No god ants here
             if (f != null)
-                if (f.getValue() == AntField.FREE || f.getValue() > steps) {
-                    Ant ant = new Ant(fields, nx, ny, steps + 1);
-                    // you go little ant! This is your field!
-                    roboAnts.add(pool.submit(ant));
+                if (f.getValue() == AntField.FREE || f.getValue() > steps)
+                {
+                    // is this the first neighbour?
+                    if (first)
+                    {
+                        // AND FORTH WE GO
+                        this.x = nx;
+                        this.y = ny;
+                        this.steps++;
+                        // Now we are somewhere else
+                        fields.getField(this.x, this.y).setValue(this.steps);
+                        first = false;
+                    }
+                    else
+                    {
+                        Ant ant = new Ant(fields, nx, ny, steps + 1);
+                        // you go little ant! This is your field!
+                        roboAnts.add(pool.submit(ant));
+                    }
                 }
         }
+        // did we take a step? Well, then let's check them all out again
+        if (!first)
+            checkOut();
+        // We only want this thread to collapse once all are done
         for (Future fu : roboAnts) {
             try {
                 // and wait for our neighbours to wave back at us
