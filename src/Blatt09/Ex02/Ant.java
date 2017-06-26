@@ -67,7 +67,9 @@ public class Ant implements Runnable {
         this.x = x;
         this.y = y;
         this.steps = stepCount;
-        fields.getField(x, y).setValue(stepCount);
+        synchronized (fields.getField(x, y)) {
+            fields.getField(x, y).setValue(stepCount);
+        }
     }
 
     /**
@@ -100,24 +102,24 @@ public class Ant implements Runnable {
             Field f = fields.getField(nx, ny);
             // fields may be null if negative -> they are walls. We cannot walk on walls. No god ants here
             if (f != null)
-                if (f.getValue() == AntField.FREE || f.getValue() > steps)
-                {
-                    // is this the first neighbour?
-                    if (first)
+                synchronized (f) {
+                    if (f.getValue() == AntField.FREE || f.getValue() > steps)
                     {
-                        // AND FORTH WE GO
-                        this.x = nx;
-                        this.y = ny;
-                        this.steps++;
-                        // Now we are somewhere else
-                        fields.getField(this.x, this.y).setValue(this.steps);
-                        first = false;
-                    }
-                    else
-                    {
-                        Ant ant = new Ant(fields, nx, ny, steps + 1);
-                        // you go little ant! This is your field!
-                        roboAnts.add(pool.submit(ant));
+
+                        // is this the first neighbour?
+                        if (first) {
+                            // AND FORTH WE GO
+                            this.x = nx;
+                            this.y = ny;
+                            this.steps++;
+                            // Now we are somewhere else
+                            fields.getField(this.x, this.y).setValue(this.steps);
+                            first = false;
+                        } else {
+                            Ant ant = new Ant(fields, nx, ny, steps + 1);
+                            // you go little ant! This is your field!
+                            roboAnts.add(pool.submit(ant));
+                        }
                     }
                 }
         }
