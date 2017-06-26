@@ -1,4 +1,4 @@
-package Blatt09.Ex01_Mo;
+package Blatt09.Ex01;
 
 import Blatt09.io.FileSystem;
 import Blatt09.io.FileVisitResult;

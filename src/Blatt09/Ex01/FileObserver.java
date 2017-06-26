@@ -1,4 +1,4 @@
-package Blatt09.Ex01_Mo;
+package Blatt09.Ex01;
 
 import java.io.File;
 import java.util.Timer;
