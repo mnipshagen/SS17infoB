@@ -22,12 +22,12 @@ public class AntRace implements AntFields {
         };
         // start positions for each field
         int[][] startPos = {
-                {2,4},
-                {1,2},
-                {0,0},
-                {2,4},
-                {0,1},
-                {0,0}
+                {2, 4},
+                {1, 2},
+                {0, 0},
+                {2, 4},
+                {0, 1},
+                {0, 0}
         };
         // for each field ...
         for (int i = 0; i < fields.length; i++) {
@@ -54,7 +54,7 @@ public class AntRace implements AntFields {
                 System.err.println("Interrupted ant racing for field " + i);
             }
             // ... give us all the data ...
-            System.out.printf("... done. The ant racing took %.3f milliseconds.\n\n", ((System.nanoTime() - time)/1000000.0));
+            System.out.printf("... done. The ant racing took %.3f milliseconds.\n\n", ((System.nanoTime() - time) / 1000000.0));
             // ... and the result
             System.out.println(field.toString());
         }

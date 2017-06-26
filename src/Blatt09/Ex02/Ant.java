@@ -85,8 +85,7 @@ public class Ant implements Runnable {
         checkOut();
     }
 
-    private void checkOut()
-    {
+    private void checkOut() {
         // ants from the future. pew pew
         Vector<Future> roboAnts = new Vector<>();
         int x = this.x;
@@ -103,9 +102,7 @@ public class Ant implements Runnable {
             // fields may be null if negative -> they are walls. We cannot walk on walls. No god ants here
             if (f != null)
                 synchronized (f) {
-                    if (f.getValue() == AntField.FREE || f.getValue() > steps + 1)
-                    {
-
+                    if (f.getValue() == AntField.FREE || f.getValue() > steps + 1) {
                         // is this the first neighbour?
                         if (first) {
                             // AND FORTH WE GO
