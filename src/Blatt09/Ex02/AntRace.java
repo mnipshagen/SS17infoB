@@ -1,5 +1,7 @@
 package Blatt09.Ex02;
 
+import Blatt09.Ex02.Ant.Pair;
+
 /**
  * A test class for the multithreaded ant racing
  * Tests all (at the time of implementation) fields of {@link AntFields}
@@ -21,20 +23,20 @@ public class AntRace implements AntFields {
                 new AntField(FIELD6)
         };
         // start positions for each field
-        int[][] startPos = {
-                {2, 4},
-                {1, 2},
-                {0, 0},
-                {2, 4},
-                {0, 1},
-                {0, 0}
+        Pair[] startPos = {
+                new Pair(2, 4),
+                new Pair(1, 2),
+                new Pair(0, 0),
+                new Pair(2, 4),
+                new Pair(0, 1),
+                new Pair(0, 0)
         };
         // for each field ...
         for (int i = 0; i < fields.length; i++) {
             // ... set the starting point ...
             AntField field = fields[i];
-            int x = startPos[i][0];
-            int y = startPos[i][1];
+            int x = startPos[i].x;
+            int y = startPos[i].y;
             // ... give a nice heads up ...
             System.out.println("Starting to fill field " + (i + 1) + " ...");
             // (time meausres)

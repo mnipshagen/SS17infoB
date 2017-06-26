@@ -85,6 +85,9 @@ public class Ant implements Runnable {
         checkOut();
     }
 
+    /**
+     * see {@link #run}
+     */
     private void checkOut() {
         // ants from the future. pew pew
         Vector<Future> roboAnts = new Vector<>();
@@ -141,9 +144,9 @@ public class Ant implements Runnable {
     /**
      * A convenience class to represent a simple pair of ints. F*ck you {@code Oracle}
      */
-    private static class Pair {
-        final int x;
-        final int y;
+    public static class Pair {
+        public final int x;
+        public final int y;
 
         Pair(int x, int y) {
             this.x = x;
