@@ -23,14 +23,15 @@ import java.util.concurrent.Future;
  *
  * @author Mathias Menninghaus (mathias.menninghaus@uos.de)
  */
+@SuppressWarnings("WeakerAccess")
 public class Ant implements Runnable {
     /**
-     * This static pool is responsible to schedule our might ant workforce
+     * This static pool is responsible to schedule our mighty ant workforce
      */
     public static final ExecutorService pool = Executors.newCachedThreadPool();
     /**
      * Since Java does even in version 9 has no f*cking tuple class... (WTF Oracle?!)
-     * No, arrays and collections are only semi good replacements.
+     * No, arrays and collections are not even semi good replacements.
      * The delta x & y to the moore neighbour fields
      */
     private static final Pair[] moores = {
@@ -48,9 +49,9 @@ public class Ant implements Runnable {
      * all the data an ant needs
      */
     private final AntField fields;
-    int x;
-    int y;
-    int steps;
+    private int x;
+    private int y;
+    private int steps;
 
 
     /**
@@ -66,7 +67,9 @@ public class Ant implements Runnable {
         this.x = x;
         this.y = y;
         this.steps = stepCount;
-        fields.getField(x, y).setValue(stepCount);
+        synchronized (fields.getField(x, y)) {
+            fields.getField(x, y).setValue(stepCount);
+        }
     }
 
     /**
@@ -79,31 +82,58 @@ public class Ant implements Runnable {
      * Thus, if this method is invoked by a different class, be careful.
      */
     public void run() {
+        checkOut();
+    }
+
+    private void checkOut() {
         // ants from the future. pew pew
         Vector<Future> roboAnts = new Vector<>();
+        int x = this.x;
+        int y = this.y;
+        int steps = this.steps;
+        // the first field is claimed by this little ant itself
+        boolean first = true;
 
         // and check the neighbours out ;)
-        for (Pair moore : moores) {
-            int nx = x + moore.x;
-            int ny = y + moore.y;
+        for (Pair p : moores) {
+            int nx = x + p.x;
+            int ny = y + p.y;
             Field f = fields.getField(nx, ny);
             // fields may be null if negative -> they are walls. We cannot walk on walls. No god ants here
             if (f != null)
-                if (f.getValue() == 0 || f.getValue() > steps) {
-                    Ant ant = new Ant(fields, nx, ny, steps + 1);
-                    // you go little ant! This is your field!
-                    roboAnts.add(pool.submit(ant));
+                synchronized (f) {
+                    if (f.getValue() == AntField.FREE || f.getValue() > steps + 1) {
+                        // is this the first neighbour?
+                        if (first) {
+                            // AND FORTH WE GO
+                            this.x = nx;
+                            this.y = ny;
+                            this.steps++;
+                            // Now we are somewhere else
+                            fields.getField(this.x, this.y).setValue(this.steps);
+                            first = false;
+                        } else {
+                            Ant ant = new Ant(fields, nx, ny, steps + 1);
+                            // you go little ant! This is your field!
+                            roboAnts.add(pool.submit(ant));
+                        }
+                    }
                 }
         }
-        // and wait for our neighbours to wave back at us
+        // did we take a step? Well, then let's check them all out again
+        if (!first)
+            checkOut();
+        // We only want this thread to collapse once all are done
         for (Future fu : roboAnts) {
             try {
-                if (fu != null)
-                    fu.get();
+                // and wait for our neighbours to wave back at us
+                fu.get();
             } catch (InterruptedException | ExecutionException e) {
                 // if we are interrupted while waiting, cancel the future we were waiting for.
                 e.printStackTrace();
-                fu.cancel(true);
+                for (Future failedFu : roboAnts)
+                    failedFu.cancel(true);
+                break;
             }
         }
     }

@@ -2,7 +2,6 @@ package Blatt09.Ex01_Mo;
 
 import java.io.File;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * A class that when called with a file or directory, attempts to calculate its size every second
@@ -12,11 +11,10 @@ import java.util.TimerTask;
  * @author Tobias Ludwig
  * @version 1.0
  */
-public class FileObserver
-{
+public class FileObserver {
     public static void main(String[] args) {
         // we need a file to observe. 1. no more no less.
-        if(args.length != 1)
+        if (args.length != 1)
             throw new IllegalArgumentException("Supply exactly one path to the file");
         // letting him throw up the IllegalArgumentException,
         // because its reasonable to throw if there is nothing to watch
