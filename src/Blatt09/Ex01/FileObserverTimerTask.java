@@ -76,7 +76,7 @@ public class FileObserverTimerTask extends TimerTask {
 
         // printy print
         System.out.printf(
-                "\r>> The current size of %s is " + (b ? "(!) " : "") + "%.3f %s",
+                "\r>> The current size of %s is " + (b ? "(!) " : "") + "%.3f %-15s",
                 watching, sizePrint, unit
         );
     }
@@ -85,7 +85,7 @@ public class FileObserverTimerTask extends TimerTask {
      * to be called when thread is shut down
      */
     public void die() {
-        System.out.println("Stopping to watch " + watching + ".");
+        System.out.println("\nStopping to watch " + watching + ".");
     }
 
     /**
