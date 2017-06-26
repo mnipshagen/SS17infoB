@@ -8,6 +8,7 @@ import Blatt09.io.MyReader;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Vector;
 import java.util.concurrent.*;
 import java.util.regex.PatternSyntaxException;
 
@@ -26,6 +27,8 @@ import static Blatt09.io.FileVisitResult.CONTINUE;
  * and several file formats as well as the "src" folder are ignored.
  */
 public class SearchLineReader {
+
+    private static Vector<Future> threads = new Vector<>();
 
     /**
      * For storing the regex matches of each visited File.
@@ -94,6 +97,15 @@ public class SearchLineReader {
         SearchLineReader s = new SearchLineReader(dir, regex, recursive);
         s.startSearch();
 
+        for (Future f : threads)
+            try {
+                f.get(10, TimeUnit.SECONDS);
+            } catch (InterruptedException | ExecutionException | TimeoutException e) {
+                for (Future failed : threads)
+                    failed.cancel(true);
+                e.printStackTrace();
+            }
+
         try {
             s.printResult();
         } catch (TimeoutException | InterruptedException e){
@@ -131,11 +143,6 @@ public class SearchLineReader {
      * Print the output of all threads.
      */
     private void printResult() throws InterruptedException, TimeoutException {
-
-        executor.shutdown();
-        if(!executor.awaitTermination(10, TimeUnit.SECONDS))
-            throw new TimeoutException("Timeout reached");
-
         for(ConcurrentHashMap.Entry<File, String> entry : matchesOfFile.entrySet()) {
             File file = entry.getKey();
             String summary = entry.getValue();
@@ -271,12 +278,7 @@ public class SearchLineReader {
         {
             if (!skip(file))
             {
-                executor.execute(new Runnable(){
-                    @Override
-                    public void run() {
-                        checkFile(file);
-                    }
-                });
+                threads.add(executor.submit((Runnable) () -> checkFile(file)));
             }
             // and forth we go
             return CONTINUE;
